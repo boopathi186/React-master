@@ -1,0 +1,9 @@
+div.profile > img
+{
+   
+   max-width: 100%;
+}
+div.profile
+{
+    width: 85%;
+}
