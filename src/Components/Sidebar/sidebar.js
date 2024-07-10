@@ -8,6 +8,7 @@ import admin from '../Assets/Admin.png';
 import roles from '../Assets/Roles.png';
 // index.js or App.js
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
@@ -17,25 +18,32 @@ const Sidebar = () => {
         <img className="mt-3" src={hotdeck} alt='hotdeck_image' />
       </div>
       <a className="dashboard  nav-link" href="fgh">
-        <div className="col-12 mt-4 py-3 mx-2 ms-3 text-danger  fw-semibold">  <i className="bi bi-speedometer2"></i> Dashboard</div>
+        <div className="col-12 mt-4 py-3 mx-2 ms-3 text-danger  fw-semibold"> 
+           <i className="bi bi-speedometer2"></i><Link to= '/dashboard'>Dashboard</Link></div>
       </a>
       <a className="themes nav-link" href="fgh">
-        <div className="col-12 mt-4 py-3 ms-3  mx-2 text-secondary text-opacity-50 fw-semibold"><img className="" src={themes} width={18} height={18} alt='themes_image' /> Themes</div>
+        <div className="col-12 mt-4 py-3 ms-3  mx-2 text-secondary text-opacity-50 fw-semibold">
+          <img className="" src={themes} width={18} height={18} alt='themes_image' /> <Link to = '/theme'>Themes</Link> </div>
       </a>
       <a className="dashborad  nav-link" href="fgh">
-        <div className="col-12 mt-4 py-3 ms-3  mx-2  text-secondary text-opacity-50 fw-semibold"> <img className="" src={decks} width={18} height={18} alt='decks_image' /> Decks</div>
+        <div className="col-12 mt-4 py-3 ms-3  mx-2  text-secondary text-opacity-50 fw-semibold">
+           <img className="" src={decks} width={18} height={18} alt='decks_image' /> Decks</div>
       </a>
       <a className="dashborad  nav-link" href="fgh">
-        <div className="col-12 mt-4 py-3 ms-3  mx-2  text-secondary text-opacity-50 fw-semibold"><img className="" src={challenges} width={18} height={18} alt='challenge_image' /> Challenges</div>
+        <div className="col-12 mt-4 py-3 ms-3  mx-2  text-secondary text-opacity-50 fw-semibold">
+          <img className="" src={challenges} width={18} height={18} alt='challenge_image' /> Challenges</div>
       </a>
       <a className="dashborad  nav-link" href="fgh">
-        <div className="col-12 mt-4 py-3 ms-3  mx-2  text-secondary text-opacity-50 fw-semibold"><img className="" src={customer} width={18} height={18} alt='customer_image' /> Customers</div>
+        <div className="col-12 mt-4 py-3 ms-3  mx-2  text-secondary text-opacity-50 fw-semibold">
+          <img className="" src={customer} width={18} height={18} alt='customer_image' /> Customers</div>
       </a>
       <a className="dashborad  nav-link" href="fgh">
-        <div className="col-12 mt-4 py-3 ms-3  mx-2  text-secondary text-opacity-50 fw-semibold"><img className="" src={admin} width={18} height={18} alt='admin_image' /> Admin User  Management</div>
+        <div className="col-12 mt-4 py-3 ms-3  mx-2  text-secondary text-opacity-50 fw-semibold">
+          <img className="" src={admin} width={18} height={18} alt='admin_image' /> Admin User  Management</div>
       </a>
       <a className="dashborad  nav-link" href="fgh">
-        <div className="col-12 mt-4 py-3 ms-3  mx-2 text-secondary text-opacity-50 fw-semibold"><img className="" src={roles} width={18} height={18} alt='role_image' /> Roles and Permissions</div>
+        <div className="col-12 mt-4 py-3 ms-3  mx-2 text-secondary text-opacity-50 fw-semibold">
+          <img className="" src={roles} width={18} height={18} alt='role_image' /> Roles and Permissions</div>
       </a>
     </div>
 

@@ -3,7 +3,6 @@ import myprofile from '../Assets/myprofile.png';
 import lock from '../Assets/lock.png';
 import logout from '../Assets/logout.png';
 import profilepic from '../Assets/profilepic.png';
-
 const Header = (props) => {
     let name = props.userName;
     return (
