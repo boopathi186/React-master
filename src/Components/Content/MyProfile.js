@@ -17,11 +17,11 @@ const MyProfile = () => {
     }
     return (
         <div className='m-0 p-0'>
-             <div className="col-12 p-0 m-0">
-             <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
-           {/* props */}
-            <Header userName={userName} userEmail={userEmail} />
-            </div>
+            <div className="col-12 p-0 m-0">
+                <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
+                    {/* props */}
+                    <Header userName={userName} userEmail={userEmail} />
+                </div>
             </div>
             <div className="innercontent row d-flex flex-row p-0 m-0 mt-4 mb-3 bg-white border border-light border-opacity-25 rounded-3 mx-3 ">
 
@@ -113,7 +113,7 @@ const MyProfile = () => {
                         </div>
                     </form>
                     <div className='text-md-end text-center ' >
-                        <Save id="save" /> <Exit id="exit"  />
+                        <Save id="save" /> <Exit id="exit" />
 
                     </div>
 
