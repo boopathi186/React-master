@@ -7,18 +7,19 @@ const Home = () => {
     return (
         <div>
             <div className="row m-0 p-0">
-                <div className="col-xl-2 col-lg-2 p-0 m-0 vh-100 shadow">
+                <div className="col-xl-2 col-lg-2 p-0 m-0 vh-100 shadow d-lg-block d-none">
                     <Sidebar />
                 </div>
-                <div className="col-xl-10 p-0 m-0">
+                <div className="col-xl-10 col-lg-10 p-0 m-0">
                     <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header />
                     </div>
                     <div className="mt-5">
                         <h1 className="text-center text-danger">Welcome to my Home!</h1>
                     </div>
+                    {/* user profile */}
                     <div className="row d-flex flex-row   m-0 mx-2 mt-4">
-                        <div className="col bg-white bg-opacity-25 p-5 mx-2 shadow-sm rounded-2 fs-3">
+                        <div className="col bg-white bg-opacity-25 p-5 mx-2 shadow rounded-2 fs-3">
                        <NavLink className='text-decoration-none' to="/userProfile"><img className="" src={myprofile} width={25} height={25}/> User Profiles</NavLink> 
                         </div>
                         

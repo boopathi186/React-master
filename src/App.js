@@ -7,6 +7,8 @@ import MyProfile from './Components/Content/MyProfile';
 import Home from './Components/Pages/Home';
 import NotFound from './Components/Pages/NotFound';
 import UserProfile from './Components/Pages/UserProfile';
+import Usersdetail from './Components/Pages/Usersdata';
+import UserInfo from './Components/Pages/User';
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
             <Route path='/myprofile' element={<MyProfile />}></Route>
             <Route path='*' element={<NotFound/>}></Route>
             <Route path='/userProfile' element={<UserProfile/>}></Route>
+            <Route path='/userProfile/:userId' element={<UserInfo/>}></Route>
           </Routes>
 
       </Router>
