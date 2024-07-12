@@ -15,14 +15,15 @@ const Home = () => {
                         <Header />
                     </div>
                     <div className="mt-5">
-                        <h1 className="text-center text-danger">Welcome to my Home!</h1>
+                        <h1 className="text-center text-danger">Welcome to my Home Page!</h1>
                     </div>
                     {/* user profile */}
                     <div className="row d-flex flex-row   m-0 mx-2 mt-4">
                         <div className="col bg-white bg-opacity-25 p-5 mx-2 shadow rounded-2 fs-3">
-                       <NavLink className='text-decoration-none' to="/userProfile"><img className="" src={myprofile} width={25} height={25}/> User Profiles</NavLink> 
+                            <NavLink className='text-decoration-none text-dark' to="/userProfile">
+                                <img className="" src={myprofile} width={25} height={25} alt='profile_img' /> User Profiles
+                            </NavLink>
                         </div>
-                        
                     </div>
                 </div>
             </div>

@@ -7,7 +7,6 @@ import MyProfile from './Components/Content/MyProfile';
 import Home from './Components/Pages/Home';
 import NotFound from './Components/Pages/NotFound';
 import UserProfile from './Components/Pages/UserProfile';
-import Usersdetail from './Components/Pages/Usersdata';
 import UserInfo from './Components/Pages/User';
 
 function App() {
@@ -19,6 +18,7 @@ function App() {
 
             <Route exact path='/' element={<Home />}> </Route>
             <Route path='/dashboard' element={<Dashboard />}></Route>
+            <Route path='/dashboard/themes' element={<Theme/>}></Route>
             <Route path='/theme' element={<Theme />}></Route>
             <Route path='/myprofile' element={<MyProfile />}></Route>
             <Route path='*' element={<NotFound/>}></Route>
