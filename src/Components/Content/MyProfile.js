@@ -20,6 +20,7 @@ const MyProfile = () => {
     const IsEnable = () => {
         setisEdit(!isEdit)
     }
+    // for input value
     const handleNameChange = (event) => {
         setName(event.target.value);
     }
@@ -44,6 +45,7 @@ const MyProfile = () => {
     const handleSkillsChange = (event) => {
         setskills(event.target.value);
     }
+    // clear the input
     const clearInputField = () => {
         setEmail('');
         setAddress('');
@@ -96,7 +98,7 @@ const MyProfile = () => {
                                     <div>
                                         <label className="fw-semibold" >Email Address</label>
                                         <input type="text" value={userEmail} onChange={handleEmailChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50  border border-2 
-                             border-secondary  border-opacity-10"
+                                           border-secondary  border-opacity-10"
                                             placeholder="Enter your e-mail" id="name" />
                                     </div>
                                 </div>
@@ -152,7 +154,7 @@ const MyProfile = () => {
                             </div>
                         </form>
                         {/* Buttons */}
-                        <div className='text-md-end text-center ' >
+                        <div className='text-md-end text-center mb-2' >
                             <Save id="save" IsEnable={IsEnable} /> <Exit id="exit" clearInputField={clearInputField} />
                         </div>
                     </div>
