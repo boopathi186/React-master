@@ -8,54 +8,25 @@ import Header from '../Header/Header';
 import Sidebar from '../Sidebar/sidebar';
 
 const MyProfile = () => {
-    const [userName, setName] = useState('');
-    const [userEmail, setEmail] = useState('');
-    const [userRole, setRole] = useState('');
-    const [userAge, setAge] = useState('');
-    const [userAddress, setAddress] = useState('');
-    const [userDegree, setDegree] = useState('');
-    const [userSpecs, setSpecs] = useState('');
-    const [userskills, setskills] = useState('');
+    const [formData, setformData] = useState(
+        {
+            Name: "", Email: "", Address: "", Age: "", Degree: "", Role: "", Skills: "", Specs: "",
+        }
+    );
+
+    // for input value
+    const handlChange = (event) => {
+        setformData(event.target.id = event.target.value);
+    }
     const [isEdit, setisEdit] = useState(true);
     const IsEnable = () => {
         setisEdit(!isEdit)
     }
-    // for input value
-    const handleNameChange = (event) => {
-        setName(event.target.value);
-    }
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    }
-    const handleRoleChange = (event) => {
-        setRole(event.target.value);
-    }
-    const handleAgeChange = (event) => {
-        setAge(event.target.value);
-    }
-    const handleAddressChange = (event) => {
-        setAddress(event.target.value);
-    }
-    const handleDegreeChange = (event) => {
-        setDegree(event.target.value);
-    }
-    const handleSpecsChange = (event) => {
-        setSpecs(event.target.value);
-    }
-    const handleSkillsChange = (event) => {
-        setskills(event.target.value);
-    }
     // clear the input
     const clearInputField = () => {
-        setEmail('');
-        setAddress('');
-        setAge('');
-        setDegree('');
-        setName('');
-        setRole('');
-        setskills('');
-        setSpecs('');
-
+        setformData({
+            Name: "", Email: "", Address: "", Age: "", Degree: "", Role: "", Skills: "", Specs: "",
+        });
     }
     return (
         <div className='row m-0 p-0'>
@@ -65,7 +36,7 @@ const MyProfile = () => {
             <div className="col-xl-10 col-lg-10 p-0 m-0">
                 <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                     {/* props */}
-                    <Header userName={userName} userEmail={userEmail} />
+                    <Header Name={formData.Name} Email={formData.Email} />
 
                 </div>
                 <div className="innercontent row d-flex flex-row p-0 m-0 mt-4 mb-3 bg-white border border-light shadow border-opacity-25 rounded-3 mx-3 ">
@@ -73,8 +44,8 @@ const MyProfile = () => {
 
                         <div className="row border border-light border-2 mx-xl-4 mx-lg-2 mx-md-2  mx-4 mt-2 rounded ">
                             <img src={Profile} width={50} height={130} class="rounded-circle px-5 mt-2" alt="Cinque Terre" />
-                            <h6 id='name'>{userName ? userName : 'Guest'}</h6>
-                            <p className="" id='email'><small>{userEmail}</small></p></div>
+                            <h6 id='name'>{formData.Name ? formData.Name : 'Guest'}</h6>
+                            <p className="" id='email'><small>{formData.Email}</small></p></div>
                     </div>
                     <div className="col-xl-9 col-lg-8 col-md-8 col-sm-12 ">
                         {/* forms */}
@@ -89,65 +60,65 @@ const MyProfile = () => {
                                 <div className="col">
                                     <div>
                                         <label className="fw-semibold">Name</label>
-                                        <input type="text" value={userName} onChange={handleNameChange} disabled={isEdit} className="mt-2 py-2 text-secondary text-opacity-50  form-control
+                                        <input type="text" value={formData.Name} onChange={handlChange} disabled={isEdit} className="mt-2 py-2 text-secondary text-opacity-50  form-control
                              border border-secondary border-opacity-10"
-                                            placeholder="Enter your name" id="name" />
+                                            placeholder="Enter your name" id="Name" />
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div>
                                         <label className="fw-semibold" >Email Address</label>
-                                        <input type="text" value={userEmail} onChange={handleEmailChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50  border border-2 
+                                        <input type="text" value={formData.Email} onChange={handlChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50  border border-2 
                                            border-secondary  border-opacity-10"
-                                            placeholder="Enter your e-mail" id="name" />
+                                            placeholder="Enter your e-mail" id="Email" />
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div>
                                         <label className="fw-semibold" >Role</label>
-                                        <input type="text" value={userRole} onChange={handleRoleChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50 border border-2 
+                                        <input type="text" value={formData.Role} onChange={handlChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50 border border-2 
                              border-secondary  border-opacity-10"
-                                            placeholder="Enter your role" id="name" />
+                                            placeholder="Enter your role" id="Role" />
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div>
                                         <label className="fw-semibold" >Age</label>
-                                        <input type="text" value={userAge} onChange={handleAgeChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50  border border-2 
+                                        <input type="text" value={formData.Age} onChange={handlChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50  border border-2 
                              border-secondary  border-opacity-10"
-                                            placeholder="Enter your age" id="name" />
+                                            placeholder="Enter your age" id="Age" />
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div>
                                         <label className="fw-semibold" >Address</label>
-                                        <input type="text" value={userAddress} onChange={handleAddressChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50  border border-2 
+                                        <input type="text" value={formData.Address} onChange={handlChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50  border border-2 
                                border-secondary border-opacity-10"
-                                            placeholder="Enter your address" id="name" />
+                                            placeholder="Enter your address" id="Address" />
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div>
                                         <label className="fw-semibold" >Degree</label>
-                                        <input type="text" value={userDegree} onChange={handleDegreeChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50  border border-2  
+                                        <input type="text" value={formData.Degree} onChange={handlChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-50  border border-2  
                             border-secondary  border-opacity-10"
-                                            placeholder="Enter your degree" id="name" />
+                                            placeholder="Enter your degree" id="Degree" />
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div>
                                         <label className="fw-semibold" >Specilization</label>
-                                        <input type="text" value={userSpecs} onChange={handleSpecsChange} disabled={isEdit} className="mt-2 py-2 form-control  text-secondary text-opacity-50  border border-2 
+                                        <input type="text" value={formData.Specs} onChange={handlChange} disabled={isEdit} className="mt-2 py-2 form-control  text-secondary text-opacity-50  border border-2 
                              border-secondary  border-opacity-10"
-                                            placeholder="Enter your specilization" id="name" />
+                                            placeholder="Enter your specilization" id="Specs" />
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div>
                                         <label className="fw-semibold" >Skills</label>
-                                        <input type="text" value={userskills} onChange={handleSkillsChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-25    border border-2 
+                                        <input type="text" value={formData.Skills} onChange={handlChange} disabled={isEdit} className="mt-2 py-2 form-control text-secondary text-opacity-25    border border-2 
                              border-secondary  border-opacity-10"
-                                            placeholder="Enter your skills" id="name" />
+                                            placeholder="Enter your skills" id="Skills" />
                                     </div>
                                 </div>
 

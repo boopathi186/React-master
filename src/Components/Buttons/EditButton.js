@@ -4,9 +4,9 @@ import { useState } from "react";
 const EditButton = (props) => {
     const[toggle,setToggle] = useState(false);
     const handleClick = () => {
-        setToggle(!toggle)
+        setToggle(toggle)
         props.IsEnable();
-        if(toggle === true){
+        if(toggle === false ){
         alert("You can Edit the page now !");}
     }
     return (
