@@ -8,6 +8,8 @@ import Home from './Components/Pages/Home';
 import NotFound from './Components/Pages/NotFound';
 import UserProfile from './Components/Pages/UserProfile';
 import UserInfo from './Components/Pages/User';
+import Create from './Components/Pages/CreateUser';
+import Update from './Components/Pages/Update';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
             <Route path='*' element={<NotFound/>}></Route>
             <Route path='/userProfile' element={<UserProfile/>}></Route>
             <Route path='/userProfile/:userId' element={<UserInfo/>}></Route>
+            <Route path='/userprofile/create' element={<Create/>}></Route>
+            <Route path='/userProfile/update/:id' element={<Update/>}></Route>
           </Routes>
 
       </Router>

@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
-import Users from "./UserProfile";
 import axios from "axios";
 import { useEffect, useState } from "react";
 const UserInfo = () => {
@@ -36,7 +35,10 @@ const UserInfo = () => {
                     <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header />
                     </div>
+
+                 
                     {/* To print details of the user */}
+                  
                     <div className="text-center">
                         <h2 className="text-center text-danger mt-5">Product Details</h2>
                         <h3>{user.title}</h3>

@@ -3,10 +3,9 @@ import Edit from '../Assets/Edit.png';
 import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/sidebar";
-import Usersdetail from "./Usersdata";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Spinner, Table } from "react-bootstrap";
+import { Button, Spinner, Table, Toast, ToastBody } from "react-bootstrap";
 const Users = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,6 +15,7 @@ const Users = () => {
       .then(response => {
         setData(response.data);
         setLoading(false);
+       
       })
       .catch(error => {
         setError(error);
@@ -23,13 +23,15 @@ const Users = () => {
       });
   }, []);
 
-  // const onDelete = (id) => {
-  //   axios.delete('https://api.escuelajs.co/api/v1/products')
-  //   .then(() => {
-  //     setData();
-  //   })
-  //   } 
-   if (loading)
+  const onDelete = (id) => {
+    axios.delete(`https://api.escuelajs.co/api/v1/products/${id}`)
+      .then(() => {
+      
+        setData(data.filter(product => product.id !== id));
+       
+      })
+  }
+  if (loading)
     return <h4 className="d-flex mt-5 justify-content-center align-items-center vh-100"><Spinner animation="border" variant="danger" /></h4>
   if (error) return <p>Error Fetching data: {error}</p>
 
@@ -47,39 +49,48 @@ const Users = () => {
           </div>
           {/* To iterate the user details using map*/}
 
-          <div className="row  m-0 mt-4 ">
-         
-              <div> 
-                <Table striped bordered>
-                  <thead>
-                    <tr>
-                      <th className='text-danger'>#id</th>
-                      <th className='text-danger'>Products</th>
-                      <th className='text-danger'>Price</th>
-                      <th className='text-danger'>Purchasing Time</th>
-                      <th className='text-danger'>Delete</th>
-                      <th className='text-danger'>Edit</th>
-                    </tr>
-                  </thead>
-               <tbody>   
-                {data.map(data => (
 
-                <tr key = {data.id}>
-                  <td>  <Link className="text-decoration-none text-dark" to={`/userProfile/${data.id}`}>{data.id}</Link></td>
-                  <td>  <Link className="text-decoration-none   " to={`/userProfile/${data.id}`}>{data.title}</Link></td>
-                  <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{data.price}</Link> </td>
-                  <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{data.creationAt}</Link> </td>
-                  <td className='text-center'> <Button variant='none'><Link to={'/userprofile/'}></Link><img  src={Delete} width={15} height={15} alt='delete_img'></img></Button></td>
-                  <td className='text-center'> <img  src={Edit} width={15} height={15} alt='delete_img'></img></td>
-                </tr>
-              ))}
+
+          <div className="row  m-0 mt-4 ">
+
+            <div>
+              <Table striped bordered>
+                <thead>
+
+                  {/* Post Button */}
+                  <Link to="/userprofile/create">
+                    <Button className='bg-danger text-white' variant='none'> + Create user</Button>
+                  </Link>
+                  <tr>
+                    <th className='text-danger'>#id</th>
+                    <th className='text-danger'>Products</th>
+                    <th className='text-danger'>Price</th>
+                    <th className='text-danger'>Purchasing Time</th>
+                    <th className='text-danger'>Delete</th>
+                    <th className='text-danger'>Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map(data => (
+
+                    <tr key={data.id}>
+                      <td>   <Link className="text-decoration-none text-dark" to={`/userProfile/${data.id}`}>{data.id}</Link></td>
+                      <td>  <Link className="text-decoration-none   " to={`/userProfile/${data.id}`}>{data.title}</Link></td>
+                      <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{data.price}</Link> </td>
+                      <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{data.creationAt}</Link> </td>
+                      <td className='text-center'> <Button onClick={()=>onDelete(data.id)} variant='none'><Link to={'/userProfile'}>
+                      </Link><img src={Delete} width={15} height={15} alt='delete_img'></img></Button></td>
+                      <td className='text-center'> <Link to={`/userProfile/update/${data.id}`}> <img src={Edit} width={15} height={15} alt='delete_img'></img></Link> </td>
+                    </tr>
+                  ))}
                 </tbody>
-                </Table>
-              </div>
-            
+              </Table>
+            </div>
+
           </div>
         </div>
-      </div>
+      </div> 
+     
     </div>
   );
 }
