@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../Sidebar/sidebar";
+import Header from "../Header/Header";
 
 
 const Create = () => {
     const navigate = useNavigate();
+    
     const [info, SetInfo] = useState(
         {
             title: "", price: "", description: "", images: ['https://pixabay.com/vectors/apparel-clothe-clothing-polo-golf-162192/'],
@@ -13,7 +16,6 @@ const Create = () => {
         }
     );
     const handlChange = (event) => {
-        //    const {id,value}=event.target;
         SetInfo({
             ...info,
             [event.target.name]: event.target.value
@@ -30,33 +32,55 @@ const Create = () => {
             categoryId: 1
         })
             .then(response => {
+                
                 console.log(response.data);
+                alert("Created  Successfully");
             })
             .catch(error => {
                 console.error("There was an error!", error);
             });
-        navigate('/userProfile');
+         navigate('/userProfile');
     }
+    const ret = () => {
+        navigate('/userProfile');
+        console.log("canceled");
+    }
+    
     return (
-        <div className="text-center ">
-            <div className="mb-2"><h1>Create User</h1></div>
-            <form className="">
-                <div className="mt-2 ">
-                    <label>Title :</label>
-                    <input type='text' placeholder="Enter name" name="title" onChange={handlChange} value={info.title} />
-                </div>
-                <div className="mt-2 ">
-                    <label>Price :</label>
-                    <input type='Number' placeholder="Enter price" name="price" onChange={handlChange} value={info.price} />
-                </div>
-                <div className="mt-2 mb-3">
-                    <label>Description :</label>
-                    <input type='text' placeholder="Description" name="description" onChange={handlChange} value={info.description} />
-                </div>
+        <div>
 
-                <Button onClick={postData} >Add Product</Button>
-            </form>
+            <div className="row m-0 p-0">
+                <div className="col-xl-2 col-lg-2 p-0 m-0 vh-100 shadow d-lg-block d-none">
+                    <Sidebar/>
+                </div>
+                <div className=" col-12 col-xl-10 col-lg-10 p-0 m-0">
+                    <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
+                        <Header/>
+                    </div>
+                    <div className=" card  mt-5 mx-5 text-center border-white shadow-sm">
+                        <div className="mb-2"><h1 className="text-danger">Create User</h1></div>
+                        <form className="">
+                            <div className="mt-2 ">
+                                <label className="w-25">Title :</label>
+                                <input className="border" type='text' placeholder="Enter name" name="title" onChange={handlChange} value={info.title} />
+                            </div>
+                            <div className="mt-2 ">
+                                <label className="w-25">Price :</label>
+                                <input className="border" type='Number' placeholder="Enter price" name="price" onChange={handlChange} value={info.price} />
+                            </div>
+                            <div className="mt-2 mb-3">
+                                <label className="w-25">Description :</label>
+                                <input className="border" type='text' placeholder="Description" name="description" onChange={handlChange} value={info.description} />
+                            </div>
+
+                            <Button variant="primary m-2" onClick={postData} >Add Product</Button>
+                            <Button variant="danger" onClick={ret} >Cancel</Button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+
     );
 }
 export default Create;

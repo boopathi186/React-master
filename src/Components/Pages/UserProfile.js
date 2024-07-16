@@ -1,3 +1,4 @@
+import '../Css/UsersStyle.css';
 import Delete from '../Assets/delete.png';
 import Edit from '../Assets/Edit.png';
 import { Link } from "react-router-dom";
@@ -5,11 +6,16 @@ import Header from "../Header/Header";
 import Sidebar from "../Sidebar/sidebar";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Spinner, Table, Toast, ToastBody } from "react-bootstrap";
+import { Button, Modal, Spinner, Table } from "react-bootstrap";
 const Users = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   useEffect(() => {
     axios.get('https://api.escuelajs.co/api/v1/products/')
       .then(response => {
@@ -26,13 +32,14 @@ const Users = () => {
   const onDelete = (id) => {
     axios.delete(`https://api.escuelajs.co/api/v1/products/${id}`)
       .then(() => {
-      
-        setData(data.filter(product => product.id !== id));
        
+        setData(data.filter(product => product.id !== id));
+         handleShow();
       })
   }
+  //  page Loading
   if (loading)
-    return <h4 className="d-flex mt-5 justify-content-center align-items-center vh-100"><Spinner animation="border" variant="danger" /></h4>
+    return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100">Loading<Spinner animation="border" variant="danger" /></h4>
   if (error) return <p>Error Fetching data: {error}</p>
 
 
@@ -49,18 +56,13 @@ const Users = () => {
           </div>
           {/* To iterate the user details using map*/}
 
-
-
-          <div className="row  m-0 mt-4 ">
-
-            <div>
-              <Table striped bordered>
-                <thead>
-
-                  {/* Post Button */}
-                  <Link to="/userprofile/create">
-                    <Button className='bg-danger text-white' variant='none'> + Create user</Button>
-                  </Link>
+          <div className="container mt-4">
+          <Link to="/userprofile/create">
+            <Button className='bg-danger text-white m-2' variant='none'> + Create user</Button>
+          </Link>
+          <div className=" t1 table-responsive">
+            <Table striped bordered>
+              <thead className='sticky-top'>
                   <tr>
                     <th className='text-danger'>#id</th>
                     <th className='text-danger'>Products</th>
@@ -90,7 +92,16 @@ const Users = () => {
           </div>
         </div>
       </div> 
-     
+      <Modal variant='danger text-white' show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body>Item Deleted Successfully..</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+          ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
