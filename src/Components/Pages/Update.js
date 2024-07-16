@@ -5,6 +5,7 @@ import { Button, } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
+import Toggle from "../Toggle/Toggle";
 
 
 const Update = () => {
@@ -51,6 +52,7 @@ const Update = () => {
                     <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header />
                     </div>
+                    <div className='d-lg-none d-block shadow'><Toggle/></div>
                     <div className=" card  mt-5 mx-5 text-center border-white shadow-sm">
                         <div className="text-center ">
                             <div className="mb-2"><h3 className="text-danger mb-3">Update User</h3></div>

@@ -11,9 +11,11 @@ import UserInfo from './Components/Pages/User';
 import Create from './Components/Pages/CreateUser';
 import Update from './Components/Pages/Update';
 
+
 function App() {
   return (
-    <div className='App'>
+    <div className='App'>  
+    
       <Router>
       
           <Routes>
@@ -31,6 +33,7 @@ function App() {
           </Routes>
 
       </Router>
+    
     </div>
   )
 }

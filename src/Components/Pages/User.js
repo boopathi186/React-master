@@ -3,6 +3,7 @@ import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Toggle from "../Toggle/Toggle";
 const UserInfo = () => {
     const { userId } = useParams();
     const [user, setUser] = useState(null);
@@ -35,7 +36,7 @@ const UserInfo = () => {
                     <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header />
                     </div>
-
+                    <div className='d-lg-none d-block shadow'><Toggle/></div>
                  
                     {/* To print details of the user */}
                   

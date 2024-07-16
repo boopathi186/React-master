@@ -2,6 +2,7 @@ import myprofile from '../Assets/myprofile.png';
 import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
 import { NavLink } from 'react-router-dom';
+import Toggle from '../Toggle/Toggle';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
                     <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header />
                     </div>
+                    <div className='d-lg-none d-block shadow'><Toggle/></div>
                     <div className="mt-5">
                         <h1 className="text-center text-danger">Welcome to my Home Page!</h1>
                     </div>

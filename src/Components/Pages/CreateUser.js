@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
+import Toggle from "../Toggle/Toggle";
 
 
 const Create = () => {
@@ -57,6 +58,7 @@ const Create = () => {
                     <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header/>
                     </div>
+                    <div className='d-lg-none d-block shadow'><Toggle/></div>
                     <div className=" card  mt-5 mx-5 text-center border-white shadow-sm">
                         <div className="mb-2"><h1 className="text-danger">Create User</h1></div>
                         <form className="">

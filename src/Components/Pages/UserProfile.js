@@ -7,6 +7,7 @@ import Sidebar from "../Sidebar/sidebar";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Modal, Spinner, Table } from "react-bootstrap";
+import Toggle from '../Toggle/Toggle';
 const Users = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -54,6 +55,7 @@ const Users = () => {
           <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
             <Header />
           </div>
+          <div className='d-lg-none d-block shadow'><Toggle/></div>
           {/* To iterate the user details using map*/}
 
           <div className="container mt-4">
