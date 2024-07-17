@@ -15,7 +15,7 @@ const Sidebar = () => {
 
     <div className="col-12 sidebar bg-white h-100 vh-100 m-0 p-0">
       <div className="col-12 text-center">
-        <Link to='/'>  <img className="mt-3" src={hotdeck} alt='hotdeck_image' /></Link>
+         <img className="mt-3" src={hotdeck} alt='hotdeck_image' />
       </div>
 
       <div className="col-12 mt-4 py-3  text-danger  fw-semibold">

@@ -11,16 +11,20 @@ import UserInfo from './Components/Pages/User';
 import Create from './Components/Pages/CreateUser';
 import Update from './Components/Pages/Update';
 
+import SignUp from './Components/Pages/SignUp';
+import Login from './Components/Pages/Login';
+
 
 function App() {
   return (
     <div className='App'>  
-    
+       
       <Router>
       
           <Routes>
-
-            <Route exact path='/' element={<Home />}> </Route>
+            <Route exact path='/' element={<SignUp/>}></Route>
+            <Route path='/login' element={<Login/>}></Route>
+            <Route  path='/home' element={<Home />}> </Route>
             <Route path='/dashboard' element={<Dashboard />}></Route>
             <Route path='/dashboard/themes' element={<Theme/>}></Route>
             <Route path='/theme' element={<Theme />}></Route>
