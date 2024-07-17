@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
 import Toggle from "../Toggle/Toggle";
+import Swal from "sweetalert2";
 
 
 const Create = () => {
@@ -20,22 +21,22 @@ const Create = () => {
         SetInfo({
             ...info,
             [event.target.name]: event.target.value
-
-        });
+           
+        }); console.log(info);
     }
 
     const postData = () => {
-        axios.post('https://api.escuelajs.co/api/v1/products', {
-            title: info.title,
-            price: (info.price),
-            description: info.description,
-            images: info.images,
-            categoryId: 1
-        })
+        axios.post('https://api.escuelajs.co/api/v1/products', info)
             .then(response => {
                 
                 console.log(response.data);
-                alert("Created  Successfully");
+                Swal.fire({
+                    position: "center",
+                    icon : "success",
+                    title: "Item Created Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             })
             .catch(error => {
                 console.error("There was an error!", error);
@@ -63,16 +64,16 @@ const Create = () => {
                         <div className="mb-2"><h1 className="text-danger">Create User</h1></div>
                         <form className="">
                             <div className="mt-2 ">
-                                <label className="w-25">Title :</label>
-                                <input className="border" type='text' placeholder="Enter name" name="title" onChange={handlChange} value={info.title} />
+                                <label className="w-25">Product :</label>
+                                <input className="border w-50" type='text' placeholder="Product" name="title" onChange={handlChange} value={info.title} />
                             </div>
                             <div className="mt-2 ">
                                 <label className="w-25">Price :</label>
-                                <input className="border" type='Number' placeholder="Enter price" name="price" onChange={handlChange} value={info.price} />
+                                <input className="border w-50" type='Number' placeholder="Price" name="price" onChange={handlChange} value={info.price} />
                             </div>
                             <div className="mt-2 mb-3">
-                                <label className="w-25">Description :</label>
-                                <input className="border" type='text' placeholder="Description" name="description" onChange={handlChange} value={info.description} />
+                                <label className="w-25">Material :</label>
+                                <input className="border w-50" type='text' placeholder="Material" name="description" onChange={handlChange} value={info.description} />
                             </div>
 
                             <Button variant="primary m-2" onClick={postData} >Add Product</Button>

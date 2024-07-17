@@ -11,7 +11,7 @@ const Header = (props) => {
             <Dropdown.Toggle variant="bg-secondary border py-1  mb-2 mt-2 bg-light bg-opacity-10 m-0" id="dropdown-basic">
                 <img className="rounded-circle text-start p-0 mx-2" src={profilepic} width={20} height={20} alt='hotdeck_image' /> {name}
             </Dropdown.Toggle>
-            <Dropdown.Menu variant=" white shadow mt-1   border-white m-0 p-0">
+            <Dropdown.Menu variant=" white shadow   border-white m-0 p-0 ">
                 <Dropdown.Item href="#/action-1"><img className="" src={myprofile} width={18} height={18} alt='hotdeck_image' />
                     <Link className='text-decoration-none text-dark' to='/myprofile' >My profile </Link></Dropdown.Item>
                 <Dropdown.Item href="#/action-2">

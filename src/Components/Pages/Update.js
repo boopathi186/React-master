@@ -1,11 +1,12 @@
 
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
 import Toggle from "../Toggle/Toggle";
+import Swal from "sweetalert2";
 
 
 const Update = () => {
@@ -16,6 +17,17 @@ const Update = () => {
             title: "", price: 0, description: "",
         }
     );
+    useEffect(() => {
+        axios.get(`https://api.escuelajs.co/api/v1/products/${id}`)
+          .then(response => {
+            SetInfo(  {
+                title: response.data.title, price: response.data.price, description: response.data.description
+            });           
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }, [id]);
     const handlChange = (event) => {
         //    const {id,value}=event.target;
         SetInfo({
@@ -24,13 +36,19 @@ const Update = () => {
 
         });
     }
-
+    // update
     const putData = () => {
         axios.put(`https://api.escuelajs.co/api/v1/products/${id}`, info)
             .then(response => {
-                SetInfo(response.info)
+                SetInfo(response.info.title)
                 console.log(response.data);
-                alert("Updated Successfully");
+              Swal.fire({
+                    position: "center",
+                    icon : "success",
+                    title: "Item Updated Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             })
             .catch(error => {
                 console.error("There was an error!", error);
@@ -55,19 +73,19 @@ const Update = () => {
                     <div className='d-lg-none d-block shadow'><Toggle/></div>
                     <div className=" card  mt-5 mx-5 text-center border-white shadow-sm">
                         <div className="text-center ">
-                            <div className="mb-2"><h3 className="text-danger mb-3">Update User</h3></div>
+                            <div className="mb-2"><h3 className="text-danger mb-3">Update Product</h3></div>
                             <form className="">
                                 <div className="mt-2 ">
-                                    <label className="w-25">Title :</label>
-                                    <input className="border" type='text' placeholder="Enter name" name="title" onChange={handlChange} value={info.title} />
+                                    <label className="w-25">Product :</label>
+                                    <input className="border w-50" type='text' placeholder="Product" name="title" onChange={handlChange} value={info.title} />
                                 </div>
                                 <div className="mt-2 ">
                                     <label className="w-25">Price :</label>
-                                    <input className="border" type='Number' placeholder="Enter price" name="price" onChange={handlChange} value={info.price} />
+                                    <input className="border w-50" type='Number' placeholder="Price" name="price" onChange={handlChange} value={info.price} />
                                 </div>
                                 <div className="mt-2 mb-3">
-                                    <label className="w-25">Description :</label>
-                                    <input className="border" type='text' placeholder="Description" name="description" onChange={handlChange} value={info.description} />
+                                    <label className="w-25">Material :</label>
+                                    <input className="border w-50" type='text' placeholder="Material" name="description" onChange={handlChange} value={info.description} />
                                 </div>
 
                                 <Button variant="primary m-2"  onClick={putData}>Update</Button>

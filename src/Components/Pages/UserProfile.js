@@ -8,21 +8,25 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Modal, Spinner, Table } from "react-bootstrap";
 import Toggle from '../Toggle/Toggle';
+import Swal from 'sweetalert2';
 const Users = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [show, setShow] = useState(false);
+  const [deleteId, setDeleteId] = useState(null); 
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (id) => {
+    setDeleteId(id); 
+   
+  };
 
   useEffect(() => {
     axios.get('https://api.escuelajs.co/api/v1/products/')
       .then(response => {
         setData(response.data);
         setLoading(false);
-       
       })
       .catch(error => {
         setError(error);
@@ -30,19 +34,29 @@ const Users = () => {
       });
   }, []);
 
-  const onDelete = (id) => {
-    axios.delete(`https://api.escuelajs.co/api/v1/products/${id}`)
+  const onDelete = () => {
+    axios.delete(`https://api.escuelajs.co/api/v1/products/${deleteId}`)
       .then(() => {
-       
-        setData(data.filter(product => product.id !== id));
-         handleShow();
+        setData(data.filter(product => product.id !== deleteId));
+        handleClose();
+        Swal.fire({
+          position: "center",
+          icon : "success",
+          title: "Deleted Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
-  }
-  //  page Loading
+      .catch(error => {
+        setError(error);
+        handleClose();
+      });
+  };
+
+  // Page Loading
   if (loading)
     return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100">Loading<Spinner animation="border" variant="danger" /></h4>
-  if (error) return <p>Error Fetching data: {error}</p>
-
+  if (error) return <p>Error Fetching data: {error.message}</p>
 
   return (
     <div>
@@ -62,7 +76,7 @@ const Users = () => {
           <Link to="/userprofile/create">
             <Button className='bg-danger text-white m-2' variant='none'> + Create user</Button>
           </Link>
-          <div className=" t1 table-responsive">
+          <div className="mt-3 t1 table-responsive">
             <Table striped bordered>
               <thead className='sticky-top'>
                   <tr>
@@ -82,8 +96,10 @@ const Users = () => {
                       <td>  <Link className="text-decoration-none   " to={`/userProfile/${data.id}`}>{data.title}</Link></td>
                       <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{data.price}</Link> </td>
                       <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{data.creationAt}</Link> </td>
-                      <td className='text-center'> <Button onClick={()=>onDelete(data.id)} variant='none'><Link to={'/userProfile'}>
+                      {/* delete */}
+                      <td className='text-center'> <Button onClick={()=>handleShow(data.id)} variant='none'><Link to={'/userProfile'}>
                       </Link><img src={Delete} width={15} height={15} alt='delete_img'></img></Button></td>
+                      {/* edit */}
                       <td className='text-center'> <Link to={`/userProfile/update/${data.id}`}> <img src={Edit} width={15} height={15} alt='delete_img'></img></Link> </td>
                     </tr>
                   ))}
@@ -94,13 +110,16 @@ const Users = () => {
           </div>
         </div>
       </div> 
-      <Modal variant='danger text-white' show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
         </Modal.Header>
-        <Modal.Body>Item Deleted Successfully..</Modal.Body>
+        <Modal.Body>Are you sure you want to delete?</Modal.Body>
         <Modal.Footer>
+          <Button variant="danger" onClick={onDelete}>
+            Yes
+          </Button>
           <Button variant="secondary" onClick={handleClose}>
-          ok
+            No
           </Button>
         </Modal.Footer>
       </Modal>
