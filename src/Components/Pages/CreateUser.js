@@ -18,9 +18,10 @@ const Create = () => {
         }
     );
     const handlChange = (event) => {
+        const{name,value} = event.target;
         SetInfo({
             ...info,
-            [event.target.name]: event.target.value
+            [name]: value,
            
         }); console.log(info);
     }
