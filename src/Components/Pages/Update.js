@@ -77,15 +77,15 @@ const Update = () => {
                             <form className="">
                                 <div className="mt-2 ">
                                     <label className="w-25">Product :</label>
-                                    <input className="border w-50" type='text' placeholder="Product" name="title" onChange={handlChange} value={info.title} />
+                                    <input className="border border-white bg-light p-2 rounded-3 text-secondary  w-50" type='text' placeholder="Product" name="title" onChange={handlChange} value={info.title} />
                                 </div>
                                 <div className="mt-2 ">
                                     <label className="w-25">Price :</label>
-                                    <input className="border w-50" type='Number' placeholder="Price" name="price" onChange={handlChange} value={info.price} />
+                                    <input className="border border-white bg-light p-2 rounded-3 text-secondary   w-50" type='Number' placeholder="Price" name="price" onChange={handlChange} value={info.price} />
                                 </div>
                                 <div className="mt-2 mb-3">
                                     <label className="w-25">Material :</label>
-                                    <input className="border w-50" type='text' placeholder="Material" name="description" onChange={handlChange} value={info.description} />
+                                    <input className="border border-white bg-light p-2 rounded-3 text-secondary  w-50" type='text' placeholder="Material" name="description" onChange={handlChange} value={info.description} />
                                 </div>
 
                                 <Button variant="primary m-2"  onClick={putData}>Update</Button>

@@ -18,7 +18,8 @@ const Header = (props) => {
                     <img className="" src={lock} width={18} height={18} alt='hotdeck_image' /> change Password
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-3">
-                    <img className="" src={logout} width={18} height={18} alt='hotdeck_image' /> Logout
+              <img className="" src={logout} width={18} height={18} alt='hotdeck_image' /> 
+              <Link className='text-decoration-none text-dark' to={'/login'} > Logout</Link>   
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>

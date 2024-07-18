@@ -72,12 +72,12 @@ const Users = () => {
           <div className='d-lg-none d-block shadow'><Toggle/></div>
           {/* To iterate the user details using map*/}
 
-          <div className="container mt-4">
+          <div className="container-fluid mt-4">
           <Link to="/userprofile/create">
-            <Button className='bg-danger text-white m-2' variant='none'> + Create user</Button>
+            <Button className='bg-danger border border-none shadow-sm text-white m-2 rounded-3' variant='none'> + Create Product</Button>
           </Link>
-          <div className="mt-3 t1 table-responsive">
-            <Table striped bordered>
+          <div className="mt-3 t1 table-responsive shadow">
+            <Table striped bordered variant='border border-white'>
               <thead className='sticky-top'>
                   <tr>
                     <th className='text-danger'>#id</th>
