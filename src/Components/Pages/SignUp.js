@@ -11,28 +11,28 @@ const SignUp = () => {
         <div className='text-center'><img className='text-center' src={hotdeck}  alt='logo'></img></div>
             <div className='form-groups'>
                 <label className='text-danger fw-bold mt-2 mb-2' htmlFor=''>UserName</label>
-                <input type='text' name='username' className='form-control bg-secondary bg-opacity-10
-                border border-0 p-2'/>
+                <input type='text' name='username' className='form-control   bg-secondary bg-opacity-10
+                border border-0 p-3'/>
             </div>
             <div className='form-groups'>
                 <label className='text-danger fw-bold mt-2 mb-2' htmlFor='email'>Email</label>
                 <input type='email' name='email' className='form-control bg-secondary bg-opacity-10
-                border border-0 p-2'/> 
+                border border-0 p-3'/> 
             </div>
             <div className='form-groups'>
                 <label className='text-danger fw-bold mt-2 mb-2' htmlFor=''>Password</label>
                 <input type='password' name='Password' className='form-control bg-secondary bg-opacity-10
-                border border-0 p-2 '/>
+                border border-0 p-3 '/>
             </div>
             <div className='form-groups'>
                 <label className='text-danger fw-bold mt-2 mb-2' htmlFor=''>Confirm Password</label>
                 <input type='password' name='cpassword' className='form-control bg-secondary bg-opacity-10
-                border border-0 p-2'/>
+                border border-0 p-3'/>
             </div>
             <div>
-                <button className='w-100 border rounded-3  border-none bg-danger text-white mt-3 p-2' type='button'><Link className='text-decoration-none text-white' to={'/home'}>Sign Up</Link></button>
+                <button className='w-100 border rounded-3  border-none bg-danger text-white mt-3 p-3' type='button'><Link className='text-decoration-none text-white' to={'/home'}>Sign Up</Link></button>
             </div>
-            <span className=''>Already have an account?<Link className='' to={'/login'}>here</Link></span>
+            <span className='fs-5'>Already have an account?<Link className='text-decoration-none' to={'/login'}> here</Link></span>
         </form>
        </div></div>
     )

@@ -56,7 +56,7 @@ const Users = () => {
   // Page Loading
   if (loading)
     return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100">Loading<Spinner animation="border" variant="danger" /></h4>
-  if (error) return <p>Error Fetching data: {error.message}</p>
+  if (error) return <p> Error Fetching data: {error.message}</p>
 
   return (
     <div>
