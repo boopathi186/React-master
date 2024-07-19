@@ -97,8 +97,8 @@ const Users = () => {
                       <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{data.price}</Link> </td>
                       <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{data.creationAt}</Link> </td>
                       {/* delete */}
-                      <td className='text-center'> <Button onClick={()=>handleShow(data.id)} variant='none'><Link to={'/userProfile'}>
-                      </Link><img src={Delete} width={15} height={15} alt='delete_img'></img></Button></td>
+                      <td className='text-center'> <Button onClick={()=>handleShow(data.id)} variant='none'>
+                        <Link to={'/userProfile'}> </Link><img src={Delete} width={15} height={15} alt='delete_img'></img></Button></td>
                       {/* edit */}
                       <td className='text-center'> <Link to={`/userProfile/update/${data.id}`}> <img src={Edit} width={15} height={15} alt='delete_img'></img></Link> </td>
                     </tr>

@@ -29,11 +29,12 @@ function App() {
             <Route path='/dashboard/themes' element={<Theme/>}></Route>
             <Route path='/theme' element={<Theme />}></Route>
             <Route path='/myprofile' element={<MyProfile />}></Route>
-            <Route path='*' element={<NotFound/>}></Route>
+           
             <Route path='/userProfile' element={<UserProfile/>}></Route>
             <Route path='/userProfile/:userId' element={<UserInfo/>}></Route>
             <Route path='/userprofile/create' element={<Create/>}></Route>
             <Route path='/userProfile/update/:id' element={<Update/>}></Route>
+             <Route path='*' element={<NotFound/>}></Route>
           </Routes>
 
       </Router>

@@ -17,7 +17,7 @@ const Home = () => {
                     </div>
                     <div className='d-lg-none d-block shadow'><Toggle/></div>
                     <div className="mt-5">
-                        <h1 className="text-center text-danger">Welcome to my Home Page!</h1>
+                        <h1 className="text-center text-danger">...  Welcome to my Home  ...</h1>
                     </div>
                     {/* user profile */}
                     <div className="row d-flex flex-row   m-0 mx-2 mt-4">

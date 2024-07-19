@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Toggle from "../Toggle/Toggle";
+import { Spinner } from "react-bootstrap";
 const UserInfo = () => {
     const { userId } = useParams();
     const [user, setUser] = useState(null);
@@ -21,7 +22,7 @@ const UserInfo = () => {
                 setLoading(false);
             });
     }, [userId]);
-    if (loading) return <h4 className="d-flex mt-5 justify-content-center align-items-center vh-100">Loading...</h4>;
+    if (loading) return <h4 className="d-flex mt-5 justify-content-center align-items-center vh-100"><Spinner animation="border" variant="danger" /></h4>;
     if (error) return <p className="text-center text-danger" >Error fetching data: {error.message}</p>;
     if (!user) return <p className="text-center text-danger" >Page Not Found</p>;
 

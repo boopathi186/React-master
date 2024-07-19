@@ -1,13 +1,19 @@
 import { Button } from "react-bootstrap";
 import edit from '../Assets/Edit.png';
 import { useState } from "react";
+import Swal from "sweetalert2";
 const EditButton = (props) => {
     const[toggle,setToggle] = useState(false);
     const handleClick = () => {
         setToggle(toggle)
         props.IsEnable();
         if(toggle === false ){
-        alert("You can Edit the page now !");}
+       Swal.fire({
+        position: "top",
+        title: "Enabled Edit!",
+        
+      })
+    }
     }
     return (
         <>

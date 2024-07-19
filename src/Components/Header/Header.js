@@ -12,12 +12,12 @@ const Header = (props) => {
                 <img className="rounded-circle text-start p-0 mx-2" src={profilepic} width={20} height={20} alt='hotdeck_image' /> {name}
             </Dropdown.Toggle>
             <Dropdown.Menu variant=" white shadow   border-white m-0 p-0 ">
-                <Dropdown.Item href="#/action-1"><img className="" src={myprofile} width={18} height={18} alt='hotdeck_image' />
+                <Dropdown.Item ><img className="" src={myprofile} width={18} height={18} alt='hotdeck_image' />
                     <Link className='text-decoration-none text-dark' to='/myprofile' >My profile </Link></Dropdown.Item>
-                <Dropdown.Item href="#/action-2">
+                <Dropdown.Item >
                     <img className="" src={lock} width={18} height={18} alt='hotdeck_image' /> change Password
                 </Dropdown.Item>
-                <Dropdown.Item href="#/action-3">
+                <Dropdown.Item>
               <img className="" src={logout} width={18} height={18} alt='hotdeck_image' /> 
               <Link className='text-decoration-none text-dark' to={'/login'} > Logout</Link>   
                 </Dropdown.Item>
