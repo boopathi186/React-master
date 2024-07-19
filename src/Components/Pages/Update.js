@@ -17,7 +17,16 @@ const Update = () => {
             title: "", price: 0, description: "",
         }
     );
-    useEffect(() => {
+  
+    const handlChange = (event) => {
+        //    const {id,value}=event.target;
+        SetInfo({
+            ...info,
+            [event.target.name]: event.target.value
+
+        });
+    } 
+     useEffect(() => {
         axios.get(`https://api.escuelajs.co/api/v1/products/${id}`)
           .then(response => {
             SetInfo(  {
@@ -28,19 +37,11 @@ const Update = () => {
             console.log(error);
           });
       }, [id]);
-    const handlChange = (event) => {
-        //    const {id,value}=event.target;
-        SetInfo({
-            ...info,
-            [event.target.name]: event.target.value
-
-        });
-    }
     // update
     const putData = () => {
         axios.put(`https://api.escuelajs.co/api/v1/products/${id}`, info)
             .then(response => {
-                SetInfo(response.info.title)
+                SetInfo(response.info)
                 console.log(response.data);
               Swal.fire({
                     position: "center",
@@ -77,18 +78,15 @@ const Update = () => {
                             <form className="">
                                 <div className="mt-2 ">
                                     <label className="w-25">Product :</label>
-                                    <input className="border border-white bg-light p-2 rounded-3 text-secondary  w-50" type='text'
-                                     placeholder="Product" name="title" onChange={handlChange} value={info.title} />
+                                    <input className="border border-white bg-light p-2 rounded-3 text-secondary  w-50" type='text' placeholder="Product" name="title" onChange={handlChange} value={info.title} />
                                 </div>
                                 <div className="mt-2 ">
                                     <label className="w-25">Price :</label>
-                                    <input className="border border-white bg-light p-2 rounded-3 text-secondary   w-50" type='Number' 
-                                    placeholder="Price" name="price" onChange={handlChange} value={info.price} />
+                                    <input className="border border-white bg-light p-2 rounded-3 text-secondary   w-50" type='Number' placeholder="Price" name="price" onChange={handlChange} value={info.price} />
                                 </div>
                                 <div className="mt-2 mb-3">
                                     <label className="w-25">Material :</label>
-                                    <input className="border border-white bg-light p-2 rounded-3 text-secondary  w-50" type='text' 
-                                    placeholder="Material" name="description" onChange={handlChange} value={info.description} />
+                                    <input className="border border-white bg-light p-2 rounded-3 text-secondary  w-50" type='text' placeholder="Material" name="description" onChange={handlChange} value={info.description} />
                                 </div>
 
                                 <Button variant="primary m-2"  onClick={putData}>Update</Button>

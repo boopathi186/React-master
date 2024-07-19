@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import Sidebar from "../Sidebar/sidebar";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Modal, Spinner, Table } from "react-bootstrap";
+import { Button, Modal, Table } from "react-bootstrap";
 import Toggle from '../Toggle/Toggle';
 import Swal from 'sweetalert2';
 const Users = () => {
@@ -19,7 +19,8 @@ const Users = () => {
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
     setDeleteId(id); 
-   
+   setShow(true);
+
   };
 
   useEffect(() => {
@@ -55,7 +56,7 @@ const Users = () => {
 
   // Page Loading
   if (loading)
-    return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100">Loading<Spinner animation="border" variant="danger" /></h4>
+    return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100">Loading</h4>
   if (error) return <p> Error Fetching data: {error.message}</p>
 
   return (
@@ -97,8 +98,9 @@ const Users = () => {
                       <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{data.price}</Link> </td>
                       <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{data.creationAt}</Link> </td>
                       {/* delete */}
-                      <td className='text-center'> <Button onClick={()=>handleShow(data.id)} variant='none'>
-                        <Link to={'/userProfile'}> </Link><img src={Delete} width={15} height={15} alt='delete_img'></img></Button></td>
+                      <td className='text-center'>
+                         <Button onClick={()=>handleShow(data.id)} variant='none'>
+                       <img src={Delete} width={15} height={15} alt='delete_img'></img></Button></td>
                       {/* edit */}
                       <td className='text-center'> <Link to={`/userProfile/update/${data.id}`}> <img src={Edit} width={15} height={15} alt='delete_img'></img></Link> </td>
                     </tr>
