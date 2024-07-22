@@ -13,7 +13,7 @@ const Create = () => {
     
     const [info, SetInfo] = useState(
         {
-            title: "", price: "", description: "", images: ['https://pixabay.com/vectors/apparel-clothe-clothing-polo-golf-162192/'],
+            title: "", price: "", description: "", images:"",
             categoryId: 1
         }
     );
@@ -46,6 +46,13 @@ const Create = () => {
     }
     const ret = () => {
         navigate('/userProfile');
+        Swal.fire({
+            position: "top-end",
+            icon: "info",
+            title: "canceled",
+            showConfirmButton: false,
+            timer: 1500
+          });
         console.log("canceled");
     }
     
@@ -64,17 +71,21 @@ const Create = () => {
                     <div className=" card  mt-5 mx-5 text-center border-white shadow-sm">
                         <div className="mb-2"><h1 className="text-danger">Create User</h1></div>
                         <form className="">
+                            
                             <div className="mt-2 ">
                                 <label className="w-25">Product :</label>
-                                <input className="border border-white bg-light p-2 text-secondary  rounded-3 w-50" type='text' placeholder="Product" name="title" onChange={handlChange} value={info.title} />
+                                <input className="border border-white bg-light p-2 text-secondary  rounded-3 w-50"
+                                 type='text' placeholder="Product" name="title" onChange={handlChange} value={info.title} />
                             </div>
                             <div className="mt-2 ">
                                 <label className="w-25">Price :</label>
-                                <input className="border border-white bg-light p-2 text-secondary  rounded-3 w-50" type='Number' placeholder="Price" name="price" onChange={handlChange} value={info.price} />
+                                <input className="border border-white bg-light p-2 text-secondary  rounded-3 w-50" 
+                                type='Number' placeholder="Price" name="price" onChange={handlChange} value={info.price} />
                             </div>
                             <div className="mt-2 mb-3">
                                 <label className="w-25">Material :</label>
-                                <input className="border border-white bg-light p-2 text-secondary  rounded-3  w-50" type='text' placeholder="Material" name="description" onChange={handlChange} value={info.description} />
+                                <input className="border border-white bg-light p-2 text-secondary  rounded-3  w-50" 
+                                type='text' placeholder="Material" name="description" onChange={handlChange} value={info.description} />
                             </div>
 
                             <Button variant="primary m-2" onClick={postData} >Add Product</Button>
