@@ -3,7 +3,7 @@ import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
 import { Link, NavLink } from 'react-router-dom';
 import Toggle from '../Toggle/Toggle';
-import { Col,Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 
 const Home = () => {
     return (
@@ -17,9 +17,7 @@ const Home = () => {
                         <Header />
                     </Row>
                     <div className='d-lg-none d-block shadow'><Toggle /></div>
-                    <div className="mt-5">
-                        <h1 className="text-center text-danger">...  Welcome to my Home  ...</h1>
-                    </div>
+
                     {/* user profile */}
                     <Row className=" d-flex flex-row   m-0 mx-2 mt-4">
                         <Col className=" bg-white bg-opacity-25 p-5 mx-2 shadow rounded-2 fs-3">
@@ -28,14 +26,14 @@ const Home = () => {
                             </NavLink>
                         </Col>
                         <Row className="row-cols-xl-5 gap-2 d-flex m-2  mt-4 ">
-                        <Col  className=" bg-secondary bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">
-                        <Link className='text-decoration-none text-dark' to='/home/themes'>Themes</Link></Col>
-                        <Col  className=" bg-danger bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">Decks</Col>
-                        <Col  className=" bg-success bg-opacity-25 p-5 shadow-sm rounded-2 fs-3">Challenges</Col>
-                        <Col  className=" bg-primary bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">Customers</Col>
+                            <Link className='text-decoration-none text-dark' to='/home/themes'>  <Col className=" bg-secondary bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">
+                                Themes</Col></Link>
+                            <Col className=" bg-danger bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">Decks</Col>
+                            <Col className=" bg-success bg-opacity-25 p-5 shadow-sm rounded-2 fs-3">Challenges</Col>
+                            <Col className=" bg-primary bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">Customers</Col>
+                        </Row>
                     </Row>
-                    </Row>
-                   
+
                 </Col>
             </Row>
         </div>

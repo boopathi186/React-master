@@ -6,14 +6,14 @@ import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
 import Toggle from "../Toggle/Toggle";
 import Swal from "sweetalert2";
-
+import '../Css/Createstyle.css';
 
 const Create = () => {
     const navigate = useNavigate();
     
     const [info, SetInfo] = useState(
         {
-            title: "", price: "", description: "", images:"",
+            title: "", price: "", description: "", images: ['https://pixabay.com/vectors/apparel-clothe-clothing-polo-golf-162192/'],
             categoryId: 1
         }
     );
@@ -28,10 +28,9 @@ const Create = () => {
 
     const postData = () => {
         axios.post('https://api.escuelajs.co/api/v1/products', info)
-            .then(response => {
-                
-                console.log(response.data);
-                Swal.fire({
+            .then(response=> {
+               console.log(response.data);   
+               Swal.fire({
                     position: "center",
                     icon : "success",
                     title: "Item Created Successfully",
@@ -39,8 +38,14 @@ const Create = () => {
                     timer: 1500
                   })
             })
-            .catch(error => {
+            .catch((error)=> {
                 console.error("There was an error!", error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'There was an error creating the product',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                  });
             });
          navigate('/userProfile');
     }
@@ -69,22 +74,22 @@ const Create = () => {
                     </div>
                     <div className='d-lg-none d-block shadow'><Toggle/></div>
                     <div className=" card  mt-5 mx-5 text-center border-white shadow-sm">
-                        <div className="mb-2"><h1 className="text-danger">Create User</h1></div>
+                        <div className="mb-2"><h3 className="text-secondary mt-4">Create Product</h3></div>
                         <form className="">
                             
                             <div className="mt-2 ">
-                                <label className="w-25">Product :</label>
-                                <input className="border border-white bg-light p-2 text-secondary  rounded-3 w-50"
+                                <label className="w-25  text-secondary fw-semibold">Product :</label>
+                                <input className="border border-white  p-2  rounded-3 w-50"
                                  type='text' placeholder="Product" name="title" onChange={handlChange} value={info.title} />
                             </div>
                             <div className="mt-2 ">
-                                <label className="w-25">Price :</label>
-                                <input className="border border-white bg-light p-2 text-secondary  rounded-3 w-50" 
+                                <label className="w-25 text-secondary  fw-semibold">Price :</label>
+                                <input className="border border-white  p-2 rounded-3 w-50" 
                                 type='Number' placeholder="Price" name="price" onChange={handlChange} value={info.price} />
                             </div>
                             <div className="mt-2 mb-3">
-                                <label className="w-25">Material :</label>
-                                <input className="border border-white bg-light p-2 text-secondary  rounded-3  w-50" 
+                                <label className="w-25 text-secondary fw-semibold ">Material :</label>
+                                <input className="border border-white p-2 rounded-3  w-50" 
                                 type='text' placeholder="Material" name="description" onChange={handlChange} value={info.description} />
                             </div>
 

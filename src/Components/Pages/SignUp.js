@@ -49,7 +49,7 @@ const SignUp = () => {
                             validationSchema={validationSchema}
                             onSubmit={(values) => {
                                 // redirect to home
-                                navigate('/home');
+                                navigate('/dashboard');
                                 console.log('Form data:', values);
                                
                             }}

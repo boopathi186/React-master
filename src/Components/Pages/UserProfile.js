@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import Sidebar from "../Sidebar/sidebar";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Modal, Row, Spinner, Table } from "react-bootstrap";
+import { Button,  Row, Spinner, Table } from "react-bootstrap";
 import Toggle from '../Toggle/Toggle';
 import Swal from 'sweetalert2';
 import moment from 'moment';
@@ -12,15 +12,21 @@ const Users = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [show, setShow] = useState(false);
-  const [deleteId, setDeleteId] = useState(null);
-
-  const handleClose = () => setShow(false);
+  let deleteId=null;
   const handleShow = (id) => {
-    setDeleteId(id);
-    setShow(true);
-
-  };
+    deleteId=id;
+    Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      onDelete(id);
+    }
+  }); };
    const navigate= useNavigate();
   useEffect(() => {
     axios.get('https://api.escuelajs.co/api/v1/products/')
@@ -36,11 +42,10 @@ const Users = () => {
   }, []); 
   
 
-  const onDelete = () => {
+  const onDelete = (id) => {
     axios.delete(`https://api.escuelajs.co/api/v1/products/${deleteId}`)
       .then(() => {
         setData(data.filter(product => product.id !== deleteId));
-        handleClose();
         Swal.fire({
           position: "center",
           icon: "success",
@@ -51,7 +56,6 @@ const Users = () => {
       })
       .catch(error => {
         setError(error);
-        handleClose();
       }); 
       navigate('/userProfile');
   };
@@ -80,26 +84,28 @@ const Users = () => {
             </Link>
             <div className="mt-3 t1 table-responsive shadow">
               <Table  bordered variant='border border-white m-'>
-                <thead className='sticky-top'>
-                  <tr className='text-center ' >
-                    {['S_No', 'Products', 'Price', 'Created Date', 'Actions'].map((field) => (
-                      <th key={field} className='text-danger bg-light fs-5 p-4 '>{field}</th>
+                <thead className='sticky-top text-center'>
+                  <tr className='' >
+                    {['S.No', 'Products', 'Price', 'Creation Date','Creation Time', 'Actions'].map((field) => (
+                      <th key={field} className='text-danger  bg-light fs-5 p-4 '>{field}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {data.map(data => (
-                    <tr className='text-start border-bottom ' key={data.id}>
-                      <td>   <Link className="text-decoration-none text-dark" to={`/userProfile/${data.id}`}>{data.id}</Link></td>
-                      <td>  <Link className="text-decoration-none text-dark  " to={`/userProfile/${data.id}`}>{data.title}</Link></td>
-                      <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}><span className='text-success fw-bold'>$</span> {data.price}</Link> </td>
-                      <td>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{moment().format('MMMM Do YYYY, h:mm:ss a')}</Link> </td>
+                    <tr className='border-bottom ' key={data.id}>
+                      <td className='text-start'>   <Link className="text-decoration-none text-dark " to={`/userProfile/${data.id}`}>{data.id}</Link></td>
+                      <td className='text-center'>  <Link className="text-decoration-none text-dark " to={`/userProfile/${data.id}`}>{data.title}</Link></td>
+                      <td className='text-center'>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}><span className='fw-bold'>$</span> {data.price}</Link> </td>
+                      <td className='text-center'>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{moment(data.createdAt).format('LL')}</Link> </td>
+                      <td className='text-center'>  <Link className="text-decoration-none  text-dark " to={`/userProfile/${data.id}`}>{moment(data.createdAt).format('LT')}</Link> </td>
+                      {/* delete */}
                       {/* delete */}
                       <td className='text-center'>
                         <Button onClick={() => handleShow(data.id)} variant='none'>
                         <i className="bi bi-trash3-fill text-danger px-3"></i></Button>
                         {/* edit */}
-                        <Link to={`/userProfile/update/${data.id}`}><i className="bi bi-pencil-square"></i></Link>
+                        <Link to={`/userProfile/update/${data.id}`}><i className=" edit bi bi-pencil-square"></i></Link>
                       </td>
                     </tr>
                   ))}
@@ -110,19 +116,6 @@ const Users = () => {
           </div>
         </div>
       </Row>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to delete?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={onDelete}>
-            Yes
-          </Button>
-          <Button variant="secondary" onClick={handleClose}>
-            No
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 }

@@ -77,21 +77,21 @@ const Update = () => {
                     <div className='d-lg-none d-block shadow'><Toggle /></div>
                     <div className=" card  mt-5 mx-5 text-center border-light shadow-sm ">
                         <div className="text-center ">
-                            <div className="mb-2 mt-2"><h3 className="text-danger mb-3">Update Product</h3></div>
+                            <div className="mb-2 mt-4"><h3 className="text-secondary mb-3">Update Product</h3></div>
                             {['Title', 'Price', 'Description'].map((field) => (
                                <form key={field} className="">
                                <div className="mt-2 ">
-                                   <label className="w-25">{field}</label>
-                                   <input className="border border-white bg-light p-2 rounded-3 text-secondary  w-50"type='text'
+                                   <label className="w-25  text-secondary ">{field}</label>
+                                   <input className="border border-white  p-2 rounded-3 mb-2 w-50"type='text'
                                     name={field}
-                                    value={[field] || ''}
+                                    value={info[field] || ''}
                                     onChange={handlChange}
                                     placeholder={`Enter your ${field.toLowerCase()}`}/>
                                </div> 
                                </form>                      
                             ))}
                             <Button variant="primary m-2"  onClick={putData}>Update</Button>
-                            <Button variant="danger" onClick={ret}>cancel</Button>
+                            <Button variant="danger m-2" onClick={ret}>cancel</Button>
                         </div>
                     </div>
                 </div>
