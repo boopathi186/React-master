@@ -1,21 +1,21 @@
 
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
 import Toggle from "../Toggle/Toggle";
 import Swal from "sweetalert2";
+import { getproducts, updateProduct } from "./ApiCall";
 const Update = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [info, SetInfo] = useState(
         {
-            Title: "", Price: 0, Description: "",
+            title: "", price: 0, description: "",
         }
     );
-    
+
     const handlChange = (event) => {
         //    const {id,value}=event.target;
         SetInfo({
@@ -25,10 +25,12 @@ const Update = () => {
         });
     }
     useEffect(() => {
-        axios.get(`https://api.escuelajs.co/api/v1/products/${id}`)
+       getproducts(id)
             .then(response => {
                 SetInfo({
-                    Title: response.data.title, Price: response.data.price, Description: response.data.description
+                    title: response.data.title,
+                    price: response.data.price,
+                    description: response.data.description
                 });
             })
             .catch(error => {
@@ -37,7 +39,7 @@ const Update = () => {
     }, [id]);
     // update
     const putData = () => {
-        axios.put(`https://api.escuelajs.co/api/v1/products/${id}`, info)
+        updateProduct(id, info)
             .then(response => {
                 SetInfo(response.info)
                 console.log(response.data);
@@ -52,17 +54,17 @@ const Update = () => {
             .catch(error => {
                 console.error("There was an error!", error);
             });
-        navigate('/userProfile');
+        navigate('/dashboard/userProfile');
     }
     const ret = () => {
-        navigate('/userProfile');
+        navigate('/dashboard/userProfile');
         Swal.fire({
             position: "top-end",
             icon: "info",
             title: "canceled",
             showConfirmButton: false,
             timer: 1500
-          });
+        });
     }
     return (
         <div>
@@ -78,19 +80,19 @@ const Update = () => {
                     <div className=" card  mt-5 mx-5 text-center border-light shadow-sm ">
                         <div className="text-center ">
                             <div className="mb-2 mt-4"><h3 className="text-secondary mb-3">Update Product</h3></div>
-                            {['Title', 'Price', 'Description'].map((field) => (
-                               <form key={field} className="">
-                               <div className="mt-2 ">
-                                   <label className="w-25  text-secondary ">{field}</label>
-                                   <input className="border border-white  p-2 rounded-3 mb-2 w-50"type='text'
-                                    name={field}
-                                    value={info[field] || ''}
-                                    onChange={handlChange}
-                                    placeholder={`Enter your ${field.toLowerCase()}`}/>
-                               </div> 
-                               </form>                      
+                            {['title', 'price', 'description'].map((field) => (
+                                <form key={field} className="">
+                                    <div className="mt-2 ">
+                                        <label className="w-25  text-secondary ">{field}</label>
+                                        <input className="border border-white  p-2 rounded-3 mb-2 w-50" type='text'
+                                            name={field}
+                                            value={info[field] || ''}
+                                            onChange={handlChange}
+                                            placeholder={`Enter your ${field.toLowerCase()}`} />
+                                    </div>
+                                </form>
                             ))}
-                            <Button variant="primary m-2"  onClick={putData}>Update</Button>
+                            <Button variant="primary m-2" onClick={putData}>Update</Button>
                             <Button variant="danger m-2" onClick={ret}>cancel</Button>
                         </div>
                     </div>

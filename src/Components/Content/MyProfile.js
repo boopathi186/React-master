@@ -8,12 +8,12 @@ import Header from '../Header/Header';
 import Sidebar from '../Sidebar/sidebar';
 import Toggle from '../Toggle/Toggle';
 import { Row, Col, Form } from 'react-bootstrap';
-const MyProfile = () => { 
+const MyProfile = () => {
     const initialValue = {
         Name: "", Email: "", Address: "", Age: "", Degree: "", Role: "", Skills: "", Specs: "",
     }
     const [formData, setformData] = useState(initialValue);
-   
+
     // for input value
     const handlChange = (event) => {
         const { name, value } = event.target;
@@ -32,18 +32,18 @@ const MyProfile = () => {
     }
 
     return (
-        <Row className="row m-0 p-0">
-            <div className="col-xl-2 col-lg-2 p-0 m-0 vh-100 shadow d-lg-block d-none">
+        <Row className=" m-0 p-0">
+            <Col xl={2} lg={2} className=" p-0 m-0 vh-100 shadow d-lg-block d-none">
                 <Sidebar />
-            </div>
-            <div className=" col-12 col-xl-10 col-lg-10 p-0 m-0">
+            </Col>
+            <Col xl={10} lg={10} className=" col-12 p-0 m-0">
                 <div className='d-lg-none d-block shadow '><Toggle /></div>
                 <div className=" p-0 m-0">
-                    <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
+                    <Row className=" border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         {/* props */}
                         <Header Name={formData.Name} Email={formData.Email} />
-                    </div>
-                    <Row className="innercontent row d-flex flex-row p-0 m-0 mt-4 mb-3 bg-white border border-light shadow border-opacity-25 rounded-3 mx-3 ">
+                    </Row>
+                    <Row className="innercontent  d-flex flex-row p-0 m-0 mt-4 mb-3 bg-white border border-light shadow border-opacity-25 rounded-3 mx-3 ">
                         <Col xl={3} lg={4} md={4} sm={12} className=" mt-3   text-center">
 
                             <Row className=" border border-light border-2 mx-xl-4 mx-lg-2 mx-md-2  mx-4 mt-2 rounded ">
@@ -54,12 +54,12 @@ const MyProfile = () => {
                         <Col xl={9} lg={8} md={8} sm={12} className=" ">
                             {/* forms */}
                             <form className='m-0 p-0' id='forms'>
-                                <div className='row m-0 p-0'>
-                                    <div className="col-6 p-0 m-0 mt-3 fs-6 fw-semibold text-md-start text-center">Account Details</div>
-                                    <div className="col-6 p-0 m-0 mt-2 fs-6 fw-semibold text-end ">
+                                <Row className='m-0 p-0'>
+                                    <Col className="col-6 p-0 m-0 mt-3 fs-6 fw-semibold text-md-start text-center">Account Details</Col>
+                                    <Col className="col-6 p-0 m-0 mt-2 fs-6 fw-semibold text-end ">
                                         <EditButton IsEnable={IsEnable} />
-                                    </div>
-                                </div>
+                                    </Col>
+                                </Row>
                                 <Row className="row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-1 g-2 mb-4 mt-3">
                                     {['Name', 'Email', 'Role', 'Age', 'Address', 'Degree', 'Specs', 'Skills'].map((field) => (
                                         <Col key={field} xl={4} lg={6} md={6} sm={12}>
@@ -86,7 +86,7 @@ const MyProfile = () => {
                         </Col>
                     </Row>
                 </div>
-            </div>
+            </Col>
         </Row>
     );
 }

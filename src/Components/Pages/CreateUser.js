@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +6,7 @@ import Header from "../Header/Header";
 import Toggle from "../Toggle/Toggle";
 import Swal from "sweetalert2";
 import '../Css/Createstyle.css';
+import { createProducts } from "./ApiCall";
 
 const Create = () => {
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Create = () => {
     }
 
     const postData = () => {
-        axios.post('https://api.escuelajs.co/api/v1/products', info)
+              createProducts(info)
             .then(response=> {
                console.log(response.data);   
                Swal.fire({
@@ -47,10 +47,10 @@ const Create = () => {
                     confirmButtonText: 'OK'
                   });
             });
-         navigate('/userProfile');
+         navigate('/dashboard/userProfile');
     }
     const ret = () => {
-        navigate('/userProfile');
+        navigate('/dashboard/userProfile');
         Swal.fire({
             position: "top-end",
             icon: "info",

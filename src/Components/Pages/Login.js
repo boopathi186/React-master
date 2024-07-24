@@ -1,29 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import hotdeck from '../Assets/Frame 629075.png';
 import { Col, Row } from 'react-bootstrap';
-import deck from '../Assets/Frame 365.png'
+import deck from '../Assets/Frame 365.png';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-
+import axios from 'axios';
 const Login = () => {
     const validationSchema = Yup.object().shape({
-        username: Yup.string()
-            .min(2, "Too short")
-            .max(10, "Too long")
-            .required("Username is required"),
+        email: Yup.string()
+            .email('Invalid email format')
+            .required('Email is required'),
         password: Yup.string()
-            .required("Password is required")
-            .min(8, "Password is too short - should be 8 chars minimum")
-            .matches(/[0-9]/, "Password must contain at least one number")
-            .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-            .matches(/[a-z]/, "Password must contain at least one lowercase letter"),
+            .required('Password is required')
     });
-    
-    const navigate = useNavigate();
 
-    const formFields = [ 
-        { name: 'username', label: 'Username', type: 'text' },
+    const navigate = useNavigate();
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (values) => {
+        try {
+            const response = await axios.post('https://api.escuelajs.co/api/v1/auth/login', {
+                email: values.email,
+                password: values.password,
+            });
+            if (response.data.access_token) {
+                localStorage.setItem('token', response.data.access_token);
+                navigate('/dashboard');
+            } else {
+                setError('Invalid credentials');
+            }
+        } catch (err) {
+            console.error(err.response);
+            setError('Error logging in. Please try again.');
+        }
+    };
+
+    useEffect(() => {
+        localStorage.removeItem('token');
+      
+    },[] );
+
+    const formFields = [
+        { name: 'email', label: 'Email', type: 'email' },
         { name: 'password', label: 'Password', type: 'password' },
     ];
 
@@ -36,15 +55,10 @@ const Login = () => {
                 <div className='login row m-0 d-flex align-items-center vh-100'>
                     <div className='container bg-white col-12 form-control w-75 border border-0 rounded-3'>
                         <Formik
-                            initialValues={{
-                                username: '', password: '',
-                            }}
+                            initialValues={{ email: '', password: '' }}
                             validationSchema={validationSchema}
-                            onSubmit={(values) => {
-                                // Redirect to home
-                                navigate('/dashboard');
-                                console.log('Form data:', values);                              
-                            }}>
+                            onSubmit={handleSubmit}
+                        >
                             {({ isSubmitting }) => (
                                 <Form className='border-white shadow p-3 rounded-3'>
                                     <Col className='col-5 mb-5'>
@@ -60,13 +74,14 @@ const Login = () => {
                                                 type={field.type}
                                                 id={field.name}
                                                 name={field.name}
-                                               
                                             />
                                             <ErrorMessage name={field.name} component="div" style={{ color: 'red' }} />
                                         </div>
                                     ))}
+                                    {error && <div style={{ color: 'red' }}>{error}</div>}
                                     <div>
-                                        <button className='w-100 border rounded-3 border-none bg-danger text-white mb-3 mt-3 p-2' type='submit' disabled={isSubmitting}>
+                                        <button className='w-100 border rounded-3 border-none bg-danger text-white mb-3 mt-3 p-2'
+                                            type='submit' disabled={isSubmitting}>
                                             Login
                                         </button>
                                     </div>
@@ -77,7 +92,6 @@ const Login = () => {
                 </div>
             </Col>
         </Row>
-    )
-}
-
+    );
+};
 export default Login;

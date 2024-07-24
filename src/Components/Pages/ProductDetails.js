@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Toggle from "../Toggle/Toggle";
 import { Spinner } from "react-bootstrap";
-const UserInfo = () => {
+const ProductInfo = () => {
     const { userId } = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -55,4 +55,4 @@ const UserInfo = () => {
         </div>
     );
 }
-export default UserInfo;
+export default ProductInfo;

@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/sidebar";
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Button,  Row, Spinner, Table } from "react-bootstrap";
 import Toggle from '../Toggle/Toggle';
 import Swal from 'sweetalert2';
 import moment from 'moment';
+import { deleteProducts, getproducts } from './ApiCall';
 const Users = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ const Users = () => {
   }); };
    const navigate= useNavigate();
   useEffect(() => {
-    axios.get('https://api.escuelajs.co/api/v1/products/')
+  getproducts()
       .then(response => {
         setData(response.data);
         setLoading(false);
@@ -43,8 +43,9 @@ const Users = () => {
   
 
   const onDelete = (id) => {
-    axios.delete(`https://api.escuelajs.co/api/v1/products/${deleteId}`)
+    deleteProducts(deleteId)
       .then(() => {
+        console.log(deleteId)
         setData(data.filter(product => product.id !== deleteId));
         Swal.fire({
           position: "center",
@@ -57,7 +58,7 @@ const Users = () => {
       .catch(error => {
         setError(error);
       }); 
-      navigate('/userProfile');
+      navigate('/dashboard/userProfile');
   };
 
   // Page Loading
