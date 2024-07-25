@@ -33,7 +33,7 @@ const Create = () => {
                Swal.fire({
                     position: "center",
                     icon : "success",
-                    title: "Item Created Successfully",
+                    title: "Product Created Successfully",
                     showConfirmButton: false,
                     timer: 1500
                   })
@@ -76,25 +76,23 @@ const Create = () => {
                     <div className=" card  mt-5 mx-5 text-center border-white shadow-sm">
                         <div className="mb-2"><h3 className="text-secondary mt-4">Create Product</h3></div>
                         <form className="">
+                            <div className="mt-2 ">  
+                            {['title', 'price', 'description'].map((field) => (
+                                        <form key={field} className="">
+                                            <div className="mt-2 ">
+                                                <label className="w-25 py-3  text-secondary ">{field.toUpperCase()}</label>
+                                                <input className="border border-white  p-2 rounded-3 mb-2 w-50" type='text'
+                                                    name={field}
+                                                    value={info[field] || ''}
+                                                    onChange={handlChange}
+                                                    placeholder={`Enter your ${field.toLowerCase()}`} />
+                                            </div>
+                                        </form>
+                                    ))}
                             
-                            <div className="mt-2 ">
-                                <label className="w-25  text-secondary fw-semibold">Product :</label>
-                                <input className="border border-white  p-2  rounded-3 w-50"
-                                 type='text' placeholder="Product" name="title" onChange={handlChange} value={info.title} />
-                            </div>
-                            <div className="mt-2 ">
-                                <label className="w-25 text-secondary  fw-semibold">Price :</label>
-                                <input className="border border-white  p-2 rounded-3 w-50" 
-                                type='Number' placeholder="Price" name="price" onChange={handlChange} value={info.price} />
-                            </div>
-                            <div className="mt-2 mb-3">
-                                <label className="w-25 text-secondary fw-semibold ">Material :</label>
-                                <input className="border border-white p-2 rounded-3  w-50" 
-                                type='text' placeholder="Material" name="description" onChange={handlChange} value={info.description} />
-                            </div>
 
-                            <Button variant="primary m-2" onClick={postData} >Add Product</Button>
-                            <Button variant="danger" onClick={ret} >Cancel</Button>
+                            <Button variant="primary m-2" onClick={postData} >Create Product</Button>
+                            <Button variant="danger" onClick={ret} >Cancel</Button></div>
                         </form>
                     </div>
                 </div>

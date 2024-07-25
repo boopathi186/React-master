@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
 import Toggle from "../Toggle/Toggle";
@@ -9,10 +9,9 @@ import Swal from "sweetalert2";
 import { getproducts, updateProduct } from "./ApiCall";
 const Update = () => {
     const { id } = useParams();
-    const navigate = useNavigate();
     const [info, SetInfo] = useState(
         {
-            title: "", price: 0, description: "",
+            Title: "", Price: 0, Description: "",
         }
     );
 
@@ -25,7 +24,7 @@ const Update = () => {
         });
     }
     useEffect(() => {
-       getproducts(id)
+        getproducts(id)
             .then(response => {
                 SetInfo({
                     title: response.data.title,
@@ -46,7 +45,7 @@ const Update = () => {
                 Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: "Item Updated Successfully",
+                    title: "Product Updated Successfully",
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -54,17 +53,22 @@ const Update = () => {
             .catch(error => {
                 console.error("There was an error!", error);
             });
-        navigate('/dashboard/userProfile');
+        window.history.back();
     }
     const ret = () => {
-        navigate('/dashboard/userProfile');
+        window.history.back();
         Swal.fire({
-            position: "top-end",
-            icon: "info",
+            toast: true,
+            position: "top-end",icon: "info",
             title: "canceled",
             showConfirmButton: false,
-            timer: 1500
-        });
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
     }
     return (
         <div>
@@ -77,23 +81,27 @@ const Update = () => {
                         <Header />
                     </div>
                     <div className='d-lg-none d-block shadow'><Toggle /></div>
-                    <div className=" card  mt-5 mx-5 text-center border-light shadow-sm ">
-                        <div className="text-center ">
-                            <div className="mb-2 mt-4"><h3 className="text-secondary mb-3">Update Product</h3></div>
-                            {['title', 'price', 'description'].map((field) => (
-                                <form key={field} className="">
-                                    <div className="mt-2 ">
-                                        <label className="w-25  text-secondary ">{field}</label>
-                                        <input className="border border-white  p-2 rounded-3 mb-2 w-50" type='text'
-                                            name={field}
-                                            value={info[field] || ''}
-                                            onChange={handlChange}
-                                            placeholder={`Enter your ${field.toLowerCase()}`} />
-                                    </div>
-                                </form>
-                            ))}
-                            <Button variant="primary m-2" onClick={putData}>Update</Button>
-                            <Button variant="danger m-2" onClick={ret}>cancel</Button>
+                    <div className="h-75 d-flex align-items-center justify-content-center">
+                        <div className="w-50">
+                            <div className=" card  mt-5 mx-5 text-center border-light shadow-sm ">
+                                <div className="text-center ">
+                                    <div className="mb-2 mt-4"><h3 className="text-secondary mb-5">Update Product</h3></div>
+                                    {['title', 'price', 'description'].map((field) => (
+                                        <form key={field} className="">
+                                            <div className="mt-2 ">
+                                                <label className="w-25 py-3  text-secondary ">{field.toUpperCase()}</label>
+                                                <input className="border border-white  p-2 rounded-3 mb-2 w-50" type='text'
+                                                    name={field}
+                                                    value={info[field] || ''}
+                                                    onChange={handlChange}
+                                                    placeholder={`Enter your ${field.toLowerCase()}`} />
+                                            </div>
+                                        </form>
+                                    ))}
+                                  <div className="mt-3"> <Button variant="primary m-2" onClick={putData}>Update</Button>
+                                    <Button variant="danger m-2" onClick={ret}>cancel</Button></div> 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

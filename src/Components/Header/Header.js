@@ -3,9 +3,17 @@ import myprofile from '../Assets/myprofile.png';
 import lock from '../Assets/lock.png';
 import logout from '../Assets/logout.png';
 import profilepic from '../Assets/profilepic.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import App from '../../App';
 const Header = (props) => {
     let name = props.userName;
+    const navigate=useNavigate()
+    const log =()=>{
+        sessionStorage.removeItem('token');
+        navigate('/');
+       
+    }
     return (
         <Dropdown>
             <Dropdown.Toggle variant="bg-secondary border py-1  mb-2 mt-2 bg-light bg-opacity-10 m-0" id="dropdown-basic">
@@ -16,11 +24,11 @@ const Header = (props) => {
                     <Link className='text-decoration-none text-dark' to='/myprofile' >My profile </Link>
                 </Dropdown.Item>
                 <Dropdown.Item as="span">
-                    <img className="" src={lock} width={18} height={18} alt='hotdeck_image' /> change Password
+                    <img className="" src={lock} width={18} height={18} alt='hotdeck_image' /> Change Password
                 </Dropdown.Item>
                 <Dropdown.Item as="span">
-                    <img className="" src={logout} width={18} height={18} alt='hotdeck_image' />
-                    <Link className='text-decoration-none text-dark' to={'/login'} > Logout</Link>
+                   <Button variant='none' onClick={log}>  <img className="" src={logout} width={18} height={18} alt='hotdeck_image' />
+                   Logout</Button>
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>

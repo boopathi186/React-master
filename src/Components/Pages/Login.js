@@ -25,7 +25,7 @@ const Login = () => {
                 password: values.password,
             });
             if (response.data.access_token) {
-                localStorage.setItem('token', response.data.access_token);
+                sessionStorage.setItem('token', response.data.access_token);
                 navigate('/dashboard');
             } else {
                 setError('Invalid credentials');
@@ -36,10 +36,10 @@ const Login = () => {
         }
     };
 
-    useEffect(() => {
-        localStorage.removeItem('token');
+    // useEffect(() => {
+    //     localStorage.removeItem('token');
       
-    },[] );
+    // },[] );
 
     const formFields = [
         { name: 'email', label: 'Email', type: 'email' },
