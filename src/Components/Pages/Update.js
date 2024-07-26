@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
@@ -72,14 +72,14 @@ const Update = () => {
     }
     return (
         <div>
-            <div className="row m-0 p-0">
-                <div className="col-xl-2 col-lg-2 p-0 m-0 vh-100 shadow d-lg-block d-none">
+            <Row className=" m-0 p-0">
+                <Col xl={2} lg={2} className=" p-0 m-0 vh-100 shadow d-lg-block d-none">
                     <Sidebar />
-                </div>
-                <div className=" col-12 col-xl-10 col-lg-10 p-0 m-0">
-                    <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
+                </Col>
+                <Col xl={10} lg={10} className=" col-12 p-0 m-0">
+                    <Row className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header />
-                    </div>
+                    </Row>
                     <div className='d-lg-none d-block shadow'><Toggle /></div>
                     <div className="h-75 d-flex align-items-center justify-content-center">
                         <div className="w-50">
@@ -104,8 +104,8 @@ const Update = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </Col>
+            </Row>
         </div>
     );
 }
