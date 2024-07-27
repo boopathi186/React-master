@@ -14,13 +14,17 @@ const Users = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(0); // Updated for 0-based index
   const recordsPerPage = 10;
   let deleteId = null;
+
   const fetchData = () => {
     getproducts()
       .then(response => {
         setData(response.data);
+        setFilteredData(response.data);
         setLoading(false);
       })
       .catch(error => {
@@ -52,7 +56,9 @@ const Users = () => {
   const onDelete = (id) => {
     deleteProducts(deleteId)
       .then(() => {
-        setData(data.filter(product => product.id !== deleteId));
+        const updatedData = data.filter(product => product.id !== deleteId);
+        setData(updatedData);
+        setFilteredData(updatedData);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -64,7 +70,6 @@ const Users = () => {
       .catch(error => {
         setError(error);
       });
-
   };
 
   const handlePageClick = (event) => {
@@ -73,15 +78,26 @@ const Users = () => {
     console.log(event.selected);
   };
 
-  const firstIndex = currentPage * recordsPerPage; // 12
-  const lastIndex = firstIndex + recordsPerPage;    //24
-  const records = data.slice(firstIndex, lastIndex);  //(12,24)
-  const pageCount = Math.ceil(data.length / recordsPerPage);  // 4
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    const filtered = data.filter(product =>
+      product.title.includes(value) ||                   //check if the  entered string are present in the table
+      product.id.toString().includes(value) ||
+      product.price.toString().includes(value)
+    );
+    setFilteredData(filtered);
+    setCurrentPage(0); // Reset to the first page after filtering
+  };
 
-  // Page Loading
+  const firstIndex = currentPage * recordsPerPage;
+  const lastIndex = firstIndex + recordsPerPage;
+  const records = filteredData.slice(firstIndex, lastIndex);
+  const pageCount = Math.ceil(filteredData.length / recordsPerPage);
+
   if (loading)
-    return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100"> <Spinner animation="border" /></h4>
-  if (error) return <p> Error Fetching data: {error.message}</p>
+    return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100"><Spinner animation="border" /></h4>;
+  if (error) return <p>Error Fetching data: {error.message}</p>;
 
   return (
     <div>
@@ -93,21 +109,33 @@ const Users = () => {
           <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
             <Header />
           </div>
-          <div className='d-lg-none d-block shadow '><Toggle /></div>
-          <div className="  text-end container-fluid mt-5">
+          <div className='d-lg-none d-block shadow'><Toggle /></div>
+          <div className="text-end container-fluid mt-5">
             <div className='row'>
               <Col>
-                <input className='w-100 p-2 mt-5 border-0 bg-light shadow'
-                  type="text" id="myInput" onkeyup="myFunction()" placeholder=" Search for names.." title="Type in a name" /></Col>
-              <Col>  <Link to="/userprofile/create">
-                <Button className='bg-danger border border-none shadow-sm text-white mt-5 rounded-3 py-3' variant='none'> + Create Product</Button>
-              </Link></Col>
+                <div className=" w-100 p-3 mt-4 position-relative">
+                <i class="search bi bi-search   text-secondary  fs-3"></i>
+                  <input
+                    className='searchbar w-100 ps-5  bg-white shadow rounded-4 border border-light p-3' 
+                    onChange={handleSearch}
+                    type="text"
+                    value={searchTerm}
+                    placeholder="Search for names..."
+                    title="Type in a name"
+                  />
+                </div>
+              </Col>
+              <Col>
+                <Link to="/userprofile/create">
+                  <Button className='bg-danger border border-none shadow-sm text-white mt-5 rounded-3 py-3' variant='none'>+ Create Product</Button>
+                </Link>
+              </Col>
             </div>
             <div className="t1 table-responsive shadow mt-4">
-              <Table bordered variant='border border-white '>
+              <Table bordered variant='border border-white'>
                 <thead className='sticky-top shadow-sm text-center'>
-                  <tr className=''>
-                    {['S.No', 'Products_Id', 'Products', 'Price', 'Creation Date', 'Creation Time', 'Actions'].map((field) => (
+                  <tr>
+                    {['S.No', 'Products', 'Price', 'Creation Date', 'Creation Time', 'Actions'].map((field) => (
                       <th key={field} className='text-danger bg-light fs-6 p-3'>{field}</th>
                     ))}
                   </tr>
@@ -116,9 +144,6 @@ const Users = () => {
                   {records.map((product, index) => (
                     <tr className='border-bottom' key={product.id}>
                       <td className='text-center text-secondary'>{firstIndex + index + 1}</td>
-                      <td className='text-center'>
-                        <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}>{product.id}</Link>
-                      </td>
                       <td className='text-center'>
                         <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}>{product.title}</Link>
                       </td>
@@ -150,6 +175,6 @@ const Users = () => {
       </Row>
     </div>
   );
-}
+};
 
 export default Users;

@@ -24,7 +24,8 @@ const Dashboard = () => {
                             </Link>
                         </Col>
                         <Row className="row-cols-xl-5 gap-2 d-flex m-2  mt-4 ">
-                            <Link className='text-decoration-none text-dark' to='/dashboard/themes'>  <Col className=" bg-secondary bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">
+                            <Link className='text-decoration-none text-dark' to='/dashboard/themes'>  
+                            <Col className=" bg-secondary bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">
                                 Themes</Col></Link>
                             <Col className=" bg-danger bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">Decks</Col>
                             <Col className=" bg-success bg-opacity-25 p-5 shadow-sm rounded-2 fs-3">Challenges</Col>

@@ -69,8 +69,11 @@ const Create = () => {
                         <Header />
                     </div>
                     <div className='d-lg-none d-block shadow'><Toggle /></div>
-                    <div className="card mt-5 mx-5 text-center border-white shadow-sm">
-                        <div className="mb-2"><h3 className="text-secondary mt-4">Create Product</h3></div>
+                    <div className="h-75 d-flex align-items-center justify-content-center">
+                        <div className="w-50">
+                            <div className=" card  mt-5 mx-5 text-center border-light shadow-sm ">
+                                <div className="text-center ">
+                                    <div className="mb-2 mt-4"><h3 className="text-secondary mb-5">Create Product</h3></div>
                         <Formik
                             initialValues={initialValues}
                             validationSchema={validationSchema}
@@ -102,6 +105,7 @@ const Create = () => {
                 </div>
             </div>
         </div>
+        </div></div></div>
     );
 };
 

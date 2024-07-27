@@ -12,17 +12,18 @@ const Paginate = ({ pageCount, handlePageClick }) => {
         onPageChange={handlePageClick}
         pageRangeDisplayed={9}
         pageCount={pageCount}
+        
         previousLabel="<< Previous"
         renderOnZeroPageCount={null}
-        containerClassName='pagination justify-content-center'
-        pageClassName='page-item'
-        pageLinkClassName='page-link text-danger'
+        containerClassName='pagination  justify-content-center'
+        pageClassName='page-item '
+        pageLinkClassName='page-link text-danger border-0' 
         previousLinkClassName='page-link text-danger border-0 fw-bold shadow-none bg-white mx-2'
         previousClassName='page-item text-danger  '
-        nextClassName='page-item  '
-        nextLinkClassName='page-link text-danger fw-bold border-0  shadow-none bg-white mx-2'
+        nextClassName='page-item  text-danger'
+        nextLinkClassName='page-link text-danger fw-bold  border-0  shadow-none bg-white mx-2'
         activeClassName='active'
-        activeLinkClassName='page-link bg-danger border border-none rounded-5 text-white shadow-none'
+        activeLinkClassName='page-link bg-danger fs-5  border border-none rounded-5 text-white shadow-none'
       />
     </div>
   );

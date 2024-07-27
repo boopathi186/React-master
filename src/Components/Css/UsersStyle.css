@@ -7,4 +7,13 @@ div.t1
 {
     color: rgb(42, 235, 235);
 }
-  
+.search
+{
+    position: absolute;
+    right: 50px;
+    top: 25px;
+}
+.search :hover
+{
+    outline-color: aquamarine;
+}
