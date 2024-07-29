@@ -6,6 +6,7 @@ import { Col, Row } from 'react-bootstrap';
 import deck from '../Assets/Frame 365.png';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
@@ -30,6 +31,19 @@ const Login = () => {
             if (response.data.access_token) {
                 sessionStorage.setItem('token', response.data.access_token);
                 navigate('/dashboard');
+                Swal.fire({
+                    toast: true,
+                    position: "bottom-end",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
             } else {
                 setError('Invalid credentials');
             }
@@ -59,8 +73,7 @@ const Login = () => {
                         <Formik
                             initialValues={{ email: '', password: '' }}
                             validationSchema={validationSchema}
-                            onSubmit={handleSubmit}
-                        >
+                            onSubmit={handleSubmit}>
                             {({ isSubmitting }) => (
                                 <Form className='border-white shadow p-3 rounded-3'>
                                     <Col className='col-5 mb-5'>
@@ -79,9 +92,7 @@ const Login = () => {
                                             />
                                             {field.name === 'password' && (
                                                 <span className='eye'
-                                                    onClick={togglePasswordVisibility}
-
-                                                >
+                                                    onClick={togglePasswordVisibility}  >
                                                     {showPassword ? <i className="bi bi-eye-fill text-danger fs-5"></i> : 
                                                    <i className="bi bi-eye-slash-fill text-danger fs-5"></i>}
                                                 </span>

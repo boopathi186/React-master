@@ -10,7 +10,7 @@ const Paginate = ({ pageCount, handlePageClick }) => {
         breakClassName='text-danger fw-bold'
         nextLabel="Next"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={9}
+        pageRangeDisplayed={6}
         pageCount={pageCount}
         
         previousLabel="Prev"

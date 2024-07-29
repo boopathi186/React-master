@@ -82,12 +82,13 @@ const Users = () => {
     const value = event.target.value;
     setSearchTerm(value);
     const filtered = data.filter(product =>
-      product.title.includes(value) ||                   //check if the  entered string are present in the table
+      product.title.includes(value) ||                 
       product.id.toString().includes(value) ||
       product.price.toString().includes(value)
     );
-    setFilteredData(filtered);
-    setCurrentPage(0); // Reset to the first page after filtering
+     setFilteredData(filtered);
+    setCurrentPage(0);
+   
   };
 
   const firstIndex = currentPage * recordsPerPage;
@@ -114,7 +115,7 @@ const Users = () => {
             <div className='row'>
               <Col md={6}>
                 <div className=" w-100 p-3 mt-3 position-relative">
-                <i class="search bi bi-search   text-secondary  fs-3"></i>
+                <i className="search bi bi-search   text-secondary  fs-3"></i>
                   <input
                     className='searchbar w-100 ps-5  bg-white shadow rounded-4 border border-light p-3' 
                     onChange={handleSearch}

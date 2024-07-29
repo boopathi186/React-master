@@ -20,12 +20,12 @@ const Toggle = () => {
             <img className="" src={menubar} width={18} height={18} alt='hotdeck_image' />
           </Button>
 
-          <Offcanvas className={"w-75"} show={show} onHide={handleClose}>
+          <Offcanvas className={""} show={show} onHide={handleClose}>
             <Offcanvas.Header closeButton>
               <Offcanvas.Title></Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body >
-              <div className='w-75 ms-0'><Sidebar /></div>
+              <div className=' '><Sidebar /></div>
             </Offcanvas.Body>
           </Offcanvas>
         </>

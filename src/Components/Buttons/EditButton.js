@@ -5,9 +5,9 @@ import Swal from "sweetalert2";
 const EditButton = (props) => {
     const[toggle,setToggle] = useState(false);
     const handleClick = () => {
-        setToggle(toggle)
+        setToggle(true)
         props.IsEnable();
-        if(toggle === false ){
+        if(toggle === true ){
        Swal.fire({
         position: "top",
         title: "Enabled Edit!",

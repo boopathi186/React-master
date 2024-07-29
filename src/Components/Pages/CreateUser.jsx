@@ -54,11 +54,17 @@ const Create = () => {
     const ret = () => {
         navigate('/dashboard/userProfile');
         Swal.fire({
+            toast: true,
             position: "top-end",
             icon: "info",
-            title: "Canceled",
+            title: "canceled",
             showConfirmButton: false,
-            timer: 1500
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
         });
         console.log("Canceled");
     };

@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Button, Col } from "react-bootstrap";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/sidebar";
 import Toggle from "../Toggle/Toggle";
@@ -17,7 +17,7 @@ const Theme = () => {
                     </div>
                     <div className=' col-12 d-lg-none d-block shadow'><Toggle/></div>
                     <div className="row m-0 p-0 mt-4">
-                        <Button variant="danger w-25 mx-4" >+Create Theme</Button>
+                       <Col className="col-12"><Button variant="danger text-center mx-4" >+Create Theme</Button></Col> 
                     </div>
                 </div>
             </div>

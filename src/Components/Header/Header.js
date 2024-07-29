@@ -5,13 +5,27 @@ import logout from '../Assets/logout.png';
 import profilepic from '../Assets/profilepic.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import App from '../../App';
+import Swal from 'sweetalert2';
 const Header = (props) => {
     let name = props.userName;
     const navigate=useNavigate()
     const log =()=>{
         sessionStorage.removeItem('token');
-        navigate('/');
+       Swal.fire({
+            toast: true,
+            position: "top-end",
+            icon: "success",
+            title: "Logout Successfully",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+
+        navigate('/login');
        
     }
     return (
@@ -27,7 +41,7 @@ const Header = (props) => {
                     <img className="" src={lock} width={18} height={18} alt='hotdeck_image' /> Change Password
                 </Dropdown.Item>
                 <Dropdown.Item as="span">
-                   <Button variant='none' onClick={log}>  <img className="" src={logout} width={18} height={18} alt='hotdeck_image' />
+                   <Button variant='none p-0' onClick={log}>  <img className="" src={logout} width={18} height={18} alt='hotdeck_image' />
                    Logout</Button>
                 </Dropdown.Item>
             </Dropdown.Menu>

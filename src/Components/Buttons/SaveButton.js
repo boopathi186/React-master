@@ -3,7 +3,7 @@ import '../Css/Save.css';
 const Save = (props) => {
     return (
         <>
-            <Button variant="primary" id="button" onClick={props.IsEnable} >Save</Button>
+            <Button variant="primary" id="button" onClick={props.saveData} >Save</Button>
         </>
     );
 }

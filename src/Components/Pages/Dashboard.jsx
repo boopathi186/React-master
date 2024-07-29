@@ -23,8 +23,8 @@ const Dashboard = () => {
                                 <img className="" src={myprofile} width={25} height={25} alt='profile_img' /> User Profiles
                             </Link>
                         </Col>
-                        <Row className="row-cols-xl-5 gap-2 d-flex m-2  mt-4 ">
-                            <Link className='text-decoration-none text-dark' to='/dashboard/themes'>  
+                        <Row className="row-cols-xl-5 gap-2 d-flex m-2  mt-4 p-0 ms-1">
+                            <Link className='text-decoration-none text-dark p-0' to='/dashboard/themes'>  
                             <Col className=" bg-secondary bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">
                                 Themes</Col></Link>
                             <Col className=" bg-danger bg-opacity-25 p-5  shadow-sm rounded-2 fs-3">Decks</Col>
