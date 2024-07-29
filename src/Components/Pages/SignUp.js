@@ -39,9 +39,9 @@ const SignUp = () => {
             <Col lg={6} className='p-0 d-lg-block d-none'>
                 <img className='image-fluid vh-100 w-100' src={deck} alt='logo_img' />
             </Col>
-            <Col lg={6} sm={12}>
+            <Col  lg={6} sm={12}>
                 <div className='login row m-0 d-flex align-items-center vh-100'>
-                    <div className='container bg-white col-12 form-control w-75 border border-0 rounded-3'>
+                    <div className='container bg-white  form-control w-75 border border-0 rounded-3'>
                         <Formik
                             initialValues={{
                                 email: '', username: '', password: '', confirmPassword: '',
@@ -55,10 +55,10 @@ const SignUp = () => {
                             }}
                         >
                             {({ isSubmitting }) => (
-                                <Form className='border-white shadow p-3 rounded-3'>
+                                <Form className='border-white shadow p-3 rounded-3 mx-xl-5 mx-0' >
                                     <Col className='col-5 mb-5'>
                                         <div className='row'>
-                                            <img src={hotdeck} alt='logo_img' width={24} height={70} />
+                                            <img src={hotdeck} alt='logo_img' className='h-50 w-50' />
                                         </div>
                                     </Col>
                                     {formFields.map((field, index) => (

@@ -110,10 +110,10 @@ const Users = () => {
             <Header />
           </div>
           <div className='d-lg-none d-block shadow'><Toggle /></div>
-          <div className="text-end container-fluid mt-5">
+          <div className="text-end container-fluid">
             <div className='row'>
-              <Col>
-                <div className=" w-100 p-3 mt-4 position-relative">
+              <Col md={6}>
+                <div className=" w-100 p-3 mt-3 position-relative">
                 <i class="search bi bi-search   text-secondary  fs-3"></i>
                   <input
                     className='searchbar w-100 ps-5  bg-white shadow rounded-4 border border-light p-3' 
@@ -125,13 +125,13 @@ const Users = () => {
                   />
                 </div>
               </Col>
-              <Col>
+              <Col className='d-none d-md-block'>
                 <Link to="/userprofile/create">
-                  <Button className='bg-danger border border-none shadow-sm text-white mt-5 rounded-3 py-3' variant='none'>+ Create Product</Button>
+                  <Button className='bg-danger border border-none shadow-sm text-white mt-4 rounded-3 py-3' variant='none'>+ Create Product</Button>
                 </Link>
               </Col>
             </div>
-            <div className="t1 table-responsive shadow mt-4">
+            <div className="t1 table-responsive shadow mt-3">
               <Table bordered variant='border border-white'>
                 <thead className='sticky-top shadow-sm text-center'>
                   <tr>
@@ -167,7 +167,12 @@ const Users = () => {
                 </tbody>
               </Table>
             </div>
-            <div className='mt-4'>
+            <Col className='d-md-none d-block text-center'>
+                <Link to="/userprofile/create">
+                  <Button className='bg-danger border border-none shadow-sm text-white mt-3 rounded-3 py-3' variant='none'>+ Create Product</Button>
+                </Link>
+              </Col>
+            <div className='mt-3'>
               <Paginate pageCount={pageCount} handlePageClick={handlePageClick} />
             </div>
           </div>

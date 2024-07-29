@@ -1,1 +1,7 @@
-
+span.eye
+{
+    position: absolute;
+    top: 30px;
+    right: 5px;
+    cursor: pointer;
+}

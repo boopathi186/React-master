@@ -1,5 +1,5 @@
-
-import { Button } from "react-bootstrap";
+import React from "react";
+import { Button, Row, Col, Container, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -9,6 +9,7 @@ import Toggle from "../Toggle/Toggle";
 import Swal from "sweetalert2";
 import '../Css/Createstyle.css';
 import { createProducts } from "./ApiCall";
+
 const Create = () => {
     const navigate = useNavigate();
 
@@ -19,11 +20,13 @@ const Create = () => {
         images: ['https://pixabay.com/vectors/apparel-clothe-clothing-polo-golf-162192/'],
         categoryId: 1,
     };
+
     const validationSchema = Yup.object().shape({
         title: Yup.string().required("Title is required"),
         price: Yup.number().required("Price is required").positive("Price must be positive"),
         description: Yup.string().required("Description is required"),
     });
+
     const postData = (values) => {
         createProducts(values)
             .then(response => {
@@ -47,6 +50,7 @@ const Create = () => {
                 });
             });
     };
+
     const ret = () => {
         navigate('/dashboard/userProfile');
         Swal.fire({
@@ -58,54 +62,64 @@ const Create = () => {
         });
         console.log("Canceled");
     };
+
     return (
-        <div>
-            <div className="row m-0 p-0">
-                <div className="col-xl-2 col-lg-2 p-0 m-0 vh-100 shadow d-lg-block d-none">
+        <Container fluid className="p-0">
+            <Row className="m-0 p-0">
+                <Col xl={2} lg={2} className="p-0 m-0 vh-100 shadow d-lg-block d-none">
                     <Sidebar />
-                </div>
-                <div className="col-12 col-xl-10 col-lg-10 p-0 m-0">
-                    <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
+                </Col>
+                <Col xl={10} lg={10} className="p-0 m-0">
+                    <Row className="border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header />
-                    </div>
+                    </Row>
                     <div className='d-lg-none d-block shadow'><Toggle /></div>
-                    <div className="h-75 d-flex align-items-center justify-content-center">
-                        <div className="w-50">
-                            <div className=" card  mt-5 mx-5 text-center border-light shadow-sm ">
-                                <div className="text-center ">
-                                    <div className="mb-2 mt-4"><h3 className="text-secondary mb-5">Create Product</h3></div>
-                        <Formik
-                            initialValues={initialValues}
-                            validationSchema={validationSchema}
-                            onSubmit={postData}
-                        >
-                            {({ handleSubmit }) => (
-                                <Form onSubmit={handleSubmit} className="">
-                                    <div className="mt-2">
-                                        {['title', 'price', 'description'].map((field) => (
-                                            <div key={field} className="mt-2">
-                                                <label className="w-25 py-3 text-secondary">{field.toUpperCase()}</label>
-                                                <Field
-                                                    className="border border-white p-2 rounded-3 mb-2 w-50"
-                                                    type="text"
-                                                    name={field}
-                                                    placeholder={`Enter your ${field.toLowerCase()}`}
-                                                />
-                                                <ErrorMessage name={field} component="div" className="text-danger"
-                                                />
-                                            </div>
-                                        ))}
-                                        <Button type="submit" variant="primary m-2">Create Product</Button>
-                                        <Button type="button" variant="danger" onClick={ret}>Cancel</Button>
+                    <Row className="h-75 d-flex align-items-center justify-content-center">
+                        <Col xl={6} lg={8} md={10} sm={12}>
+                            <Card className="mt-5 mx-5 text-center border-light shadow-sm">
+                                <div className="text-center">
+                                    <div className="mb-2 mt-4">
+                                        <h3 className="text-secondary mb-5">Create Product</h3>
                                     </div>
-                                </Form>
-                            )}
-                        </Formik>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div></div></div>
+                                    <Formik
+                                        initialValues={initialValues}
+                                        validationSchema={validationSchema}
+                                        onSubmit={postData}
+                                    >
+                                        {({ handleSubmit }) => (
+                                            <Form onSubmit={handleSubmit} className="">
+                                                {['title', 'price', 'description'].map((field) => (
+                                                    <Row key={field} className="justify-content-center mt-2">
+                                                        <Col md={3} sm={12} className="py-3 text-secondary text-md-end text-start">
+                                                            {field.toUpperCase()}
+                                                        </Col>
+                                                        <Col md={6} sm={12}>
+                                                            <Field
+                                                                className="form-control border border-white p-2 rounded-3 mb-2"
+                                                                type="text"
+                                                                name={field}
+                                                                placeholder={`Enter your ${field.toLowerCase()}`}
+                                                            />
+                                                            <ErrorMessage name={field} component="div" className="text-danger" />
+                                                        </Col>
+                                                    </Row>
+                                                ))}
+                                                <Row className="justify-content-center mt-4">
+                                                    <Col md={6} sm={12} className="text-center">
+                                                        <Button type="submit" variant="primary m-2">Create Product</Button>
+                                                        <Button type="button" variant="danger" onClick={ret}>Cancel</Button>
+                                                    </Col>
+                                                </Row>
+                                            </Form>
+                                        )}
+                                    </Formik>
+                                </div>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

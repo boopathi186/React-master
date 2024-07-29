@@ -6,6 +6,8 @@ import { Col, Row } from 'react-bootstrap';
 import deck from '../Assets/Frame 365.png';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import axios from 'axios';
+
+
 const Login = () => {
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -17,6 +19,7 @@ const Login = () => {
 
     const navigate = useNavigate();
     const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = async (values) => {
         try {
@@ -36,14 +39,13 @@ const Login = () => {
         }
     };
 
-    // useEffect(() => {
-    //     localStorage.removeItem('token');
-      
-    // },[] );
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const formFields = [
         { name: 'email', label: 'Email', type: 'email' },
-        { name: 'password', label: 'Password', type: 'password' },
+        { name: 'password', label: 'Password', type: showPassword ? 'text' : 'password' },
     ];
 
     return (
@@ -63,18 +65,27 @@ const Login = () => {
                                 <Form className='border-white shadow p-3 rounded-3'>
                                     <Col className='col-5 mb-5'>
                                         <div className='row'>
-                                            <img src={hotdeck} alt='logo_img' width={24} height={70} />
+                                            <img src={hotdeck} alt='logo_img' className='h-25 w-50' />
                                         </div>
                                     </Col>
                                     {formFields.map((field, index) => (
-                                        <div key={index}>
+                                        <div key={index} className='mb-3 position-relative'>
                                             <label className='fw-semibold' htmlFor={field.name}>{field.label}:</label>
                                             <Field
-                                                className='mb-2 form-control fw-semibold bg-secondary bg-opacity-10 border border-0 p-2'
+                                                className='form-control fw-semibold bg-secondary bg-opacity-10 border border-0 p-2'
                                                 type={field.type}
                                                 id={field.name}
                                                 name={field.name}
                                             />
+                                            {field.name === 'password' && (
+                                                <span className='eye'
+                                                    onClick={togglePasswordVisibility}
+
+                                                >
+                                                    {showPassword ? <i className="bi bi-eye-fill text-danger fs-5"></i> : 
+                                                   <i className="bi bi-eye-slash-fill text-danger fs-5"></i>}
+                                                </span>
+                                            )}
                                             <ErrorMessage name={field.name} component="div" style={{ color: 'red' }} />
                                         </div>
                                     ))}
@@ -94,4 +105,5 @@ const Login = () => {
         </Row>
     );
 };
+
 export default Login;

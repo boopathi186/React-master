@@ -8,22 +8,22 @@ const Paginate = ({ pageCount, handlePageClick }) => {
       <ReactPaginate
         breakLabel=" . . . "
         breakClassName='text-danger fw-bold'
-        nextLabel="Next >>"
+        nextLabel="Next"
         onPageChange={handlePageClick}
         pageRangeDisplayed={9}
         pageCount={pageCount}
         
-        previousLabel="<< Previous"
+        previousLabel="Prev"
         renderOnZeroPageCount={null}
-        containerClassName='pagination  justify-content-center'
+        containerClassName='pagination  justify-content-center '
         pageClassName='page-item '
-        pageLinkClassName='page-link text-danger border-0' 
-        previousLinkClassName='page-link text-danger border-0 fw-bold shadow-none bg-white mx-2'
+        pageLinkClassName='page-link text-danger  shadow-sm d-md-block d-none ' 
+        previousLinkClassName='page-link text-danger border-white rounded-3 fw-bold shadow bg-light mx-2'
         previousClassName='page-item text-danger  '
         nextClassName='page-item  text-danger'
-        nextLinkClassName='page-link text-danger fw-bold  border-0  shadow-none bg-white mx-2'
+        nextLinkClassName='page-link text-danger  border-white rounded-3 fw-bold shadow bg-light mx-2'
         activeClassName='active'
-        activeLinkClassName='page-link bg-danger fs-5  border border-none rounded-5 text-white shadow-none'
+        activeLinkClassName='page-link fs-5 bg-info bg-opacity-75 text-white  rounded-5 text-primary border-0 shadow-none'
       />
     </div>
   );
