@@ -110,10 +110,10 @@ const Create = () => {
                                                         </Col>
                                                     </Row>
                                                 ))}
-                                                <Row className="justify-content-center mt-4">
-                                                    <Col md={6} sm={12} className="text-center">
-                                                        <Button type="submit" variant="primary m-2">Create Product</Button>
-                                                        <Button type="button" variant="danger" onClick={ret}>Cancel</Button>
+                                                <Row className="d-flex mt-4">
+                                                    <Col  className="text-center">
+                                                        <Button type="submit" variant="primary m-2 ">Create Product</Button>
+                                                       <Button type="button" variant="danger m-2" onClick={ret}>Cancel</Button>
                                                     </Col>
                                                 </Row>
                                             </Form>

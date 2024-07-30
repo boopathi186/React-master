@@ -117,7 +117,7 @@ const Users = () => {
                 <div className=" w-100 p-3 mt-3 position-relative">
                 <i className="search bi bi-search   text-secondary  fs-3"></i>
                   <input
-                    className='searchbar w-100 ps-5  bg-white shadow rounded-4 border border-light p-3' 
+                    className='searchbar w-100 ps-5   shadow rounded-4 border-0 p-3' 
                     onChange={handleSearch}
                     type="text"
                     value={searchTerm}
@@ -128,7 +128,8 @@ const Users = () => {
               </Col>
               <Col className='d-none d-md-block'>
                 <Link to="/userprofile/create">
-                  <Button className='bg-danger border border-none shadow-sm text-white mt-4 rounded-3 py-3' variant='none'>+ Create Product</Button>
+                  <Button className='bg-danger border border-none shadow-sm text-white mt-4 fw-semibold rounded-3 py-3'
+                   variant='none'>+ Create Product</Button>
                 </Link>
               </Col>
             </div>
@@ -137,16 +138,16 @@ const Users = () => {
                 <thead className='sticky-top shadow-sm text-center'>
                   <tr>
                     {['S.No', 'Products', 'Price', 'Creation Date', 'Creation Time', 'Actions'].map((field) => (
-                      <th key={field} className='text-danger bg-light fs-6 p-3'>{field}</th>
+                      <th key={field} className='text-danger bg-light bg-opacity-100 rounded border border-white fs-6 p-2'>{field}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {records.map((product, index) => (
-                    <tr className='border-bottom' key={product.id}>
+                    <tr className='border-bottom ' key={product.id}>
                       <td className='text-center text-secondary'>{firstIndex + index + 1}</td>
                       <td className='text-center'>
-                        <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}>{product.title}</Link>
+                        <Link className="text-decoration-none text-secondary " to={`/userProfile/${product.id}`}>{product.title}</Link>
                       </td>
                       <td className='text-center'>
                         <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}><span className='fw-bold'>$</span> {product.price}</Link>
@@ -158,10 +159,10 @@ const Users = () => {
                         <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}>{moment(product.createdAt).format('LT')}</Link>
                       </td>
                       <td className='text-center'>
-                        <Button onClick={() => handleShow(product.id)} variant='none'>
-                          <i className="bi bi-trash3-fill text-danger px-1"></i>
+                        <Button onClick={() => handleShow(product.id)} variant='none px-sm-1 px-0'>
+                          <i className="bi bi-trash3-fill text-danger px-1 "></i>
                         </Button>
-                        <Link to={`/userProfile/update/${product.id}`}><i className="edit bi bi-pencil-square"></i></Link>
+                        <Link className='px-1 ' to={`/userProfile/update/${product.id}`}><i className="edit bi bi-pencil-square "></i></Link>
                       </td>
                     </tr>
                   ))}

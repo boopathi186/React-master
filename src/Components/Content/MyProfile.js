@@ -54,7 +54,7 @@ const MyProfile = () => {
                     <Row className="border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header Name={formData.Name} Email={formData.Email} />
                     </Row>
-                    <Row className="innercontent d-flex flex-row p-0 m-0 mt-4 mb-3 bg-white border border-light shadow border-opacity-25 rounded-3 mx-3">
+                    <Row className="innercontent d-flex flex-row p-0 m-0 mt-4 mb-3 bg-white border border-light shadow-sm border-opacity-25 rounded-3 mx-3">
                         <Col xl={3} lg={4} md={4} sm={12} className="mt-3 text-center">
                             <Row className="border border-light border-2 mx-xl-4 mx-lg-2 mx-md-2 mx-4 mt-2 rounded">
                                 <img src={Profile} width={50} height={130} className="rounded-circle px-5 mt-2" alt="Cinque Terre" />

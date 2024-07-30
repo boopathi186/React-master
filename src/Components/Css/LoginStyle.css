@@ -1,7 +1,11 @@
 span.eye
 {
     position: absolute;
-    top: 30px;
-    right: 5px;
+    top: 40px;
+    right: 10px;
     cursor: pointer;
+}
+.input :focus
+{
+   outline: none;
 }

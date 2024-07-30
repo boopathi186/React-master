@@ -30,7 +30,7 @@ const ProductInfo = () => {
     if (!user) return <p className="text-center text-danger" >Page Not Found</p>;
 
     return (
-        <div className="product-info vh-100 d-flex flex-column">
+        <div className="product-info  vh-100 d-flex flex-column">
             <Row className=" m-0 p-0">
                 <Col xl={2} lg={2}  className=" p-0 m-0 vh-100 shadow d-lg-block d-none">
                     <Sidebar />
@@ -39,11 +39,11 @@ const ProductInfo = () => {
                     <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header />
                     </div>
-                    <div className='d-lg-none d-block shadow'><Toggle /></div>
-                    <div className="product-details text-center p-4 mt-5 shadow-sm">
-                        <h2 className="text-danger mb-4 fw-bold fs-2">Product Details</h2>
-                        <h3 className="mb-3 fs-4">{user.title}</h3>
-                        <p className="mb-1"><strong>ID:</strong> {user.id}</p>
+                    <div className='d-lg-none d-block shadow '><Toggle /></div>
+                    <div className="product-details  p-2 mt-5 shadow-sm">
+                        <h2 className="text-danger text-center mb-4 fw-bold fs-2 ">Product Details</h2>
+                        <h3 className="mb-3 fs-4 text-center p-1">{user.title}</h3>
+                        <p className="mb-1"><strong className="text-start">ID:</strong> {user.id}</p>
                         <p className="mb-1"><strong>Price:</strong> ${user.price}</p>
                         <p className="mb-1 fs-5"><strong>Description:</strong> {user.description}</p>
                         <p className="mb-1"><strong>Creation Date:</strong> {new Date(user.creationAt).toLocaleString()}</p>

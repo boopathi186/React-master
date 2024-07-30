@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import hotdeck from '../Assets/Frame 629075.png';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Spinner } from 'react-bootstrap';
 import deck from '../Assets/Frame 365.png';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 
 
 const Login = () => {
+    const[loading,setLoading]=useState(true);
     const validationSchema = Yup.object().shape({
         email: Yup.string()
             .email('Invalid email format')
@@ -31,9 +32,10 @@ const Login = () => {
             if (response.data.access_token) {
                 sessionStorage.setItem('token', response.data.access_token);
                 navigate('/dashboard');
-                Swal.fire({
+                setTimeout (() =>
+                {  Swal.fire({
                     toast: true,
-                    position: "bottom-end",
+                    position: "top-end",
                     icon: "success",
                     title: "Login Successfully",
                     showConfirmButton: false,
@@ -43,7 +45,8 @@ const Login = () => {
                         toast.onmouseenter = Swal.stopTimer;
                         toast.onmouseleave = Swal.resumeTimer;
                     }
-                });
+                });},2000);
+              
             } else {
                 setError('Invalid credentials');
             }
@@ -62,6 +65,13 @@ const Login = () => {
         { name: 'password', label: 'Password', type: showPassword ? 'text' : 'password' },
     ];
 
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 2000)
+    }, [])
+    
+    if (loading)
+        return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100"><Spinner animation="border" /></h4>;
+      if (error) return <p>Error Fetching data: {error.message}</p>;
     return (
         <Row className='row-cols-lg-2 m-0'>
             <Col lg={6} className='p-0 d-lg-block d-none'>
@@ -83,9 +93,9 @@ const Login = () => {
                                     </Col>
                                     {formFields.map((field, index) => (
                                         <div key={index} className='mb-3 position-relative'>
-                                            <label className='fw-semibold' htmlFor={field.name}>{field.label}:</label>
+                                            <label className='text-secondary mb-2 fw-semibold' htmlFor={field.name}>{field.label}:</label>
                                             <Field
-                                                className='form-control fw-semibold bg-secondary bg-opacity-10 border border-0 p-2'
+                                                className=' input form-control fw-semibold bg-secondary bg-opacity-10 border border-0 shadow-sm p-3'
                                                 type={field.type}
                                                 id={field.name}
                                                 name={field.name}

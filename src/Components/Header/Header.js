@@ -9,25 +9,28 @@ import Swal from 'sweetalert2';
 const Header = (props) => {
     let name = props.userName;
     const navigate=useNavigate()
+ 
     const log =()=>{
         sessionStorage.removeItem('token');
-       Swal.fire({
-            toast: true,
-            position: "top-end",
-            icon: "success",
-            title: "Logout Successfully",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-            }
-        });
-
+        
+        setTimeout (() =>
+            {  Swal.fire({
+                toast: true,
+                position: "top-end",
+                icon: "success",
+                title: "Successfully Loggedout",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });},3000);
         navigate('/login');
        
-    }
+    } 
+
     return (
         <Dropdown>
             <Dropdown.Toggle variant="bg-secondary border py-1  mb-2 mt-2 bg-light bg-opacity-10 m-0" id="dropdown-basic">
