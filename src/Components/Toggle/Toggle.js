@@ -25,7 +25,7 @@ const Toggle = () => {
               <Offcanvas.Title></Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body >
-              <div className=' '><Sidebar /></div>
+              <div className=''><Sidebar /></div>
             </Offcanvas.Body>
           </Offcanvas>
         </>

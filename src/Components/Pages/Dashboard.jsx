@@ -19,7 +19,7 @@ const Dashboard = () => {
     return (
         <>
             <Row className="m-0 p-0">
-                <Col xl={2} lg={2} className="p-0 m-0 vh-100 shadow d-lg-block d-none">
+                <Col xl={2} lg={2} className="p-0 m-0 vh-100 shadow-sm d-lg-block d-none">
                     <Sidebar />
                 </Col>
                 <Col xl={10} lg={10} className='p-0 m-0'>
@@ -28,10 +28,11 @@ const Dashboard = () => {
                     </Row>
                     <div className='d-lg-none d-block shadow'><Toggle /></div>
                     <Container fluid>
-                    <Row className="d-flex flex-row-reverse m-0 mt-4 p-0">
-                            <Col className="userprofile mt-3 rounded-2 fs-5 fw-semibold text-md-end text-center">
+                    <Row className="d-flex  m-0 mt-4 p-0">
+                        <Col md={6} sm={12} className="fw-semibold mb-4 fs-4 text-md-start text-center">Dashboard</Col>
+                            <Col md={6} sm={12} className="userprofile mt-3 rounded-2 fs-5 fw-semibold text-md-end text-center">
                                 <Link className='text-decoration-none text-white' to="/dashboard/userProfile">
-                                   <span className="bg-danger   shadow-sm p-3 rounded"> <i className="bi bi-person-fill"></i>  User Profiles >></span>
+                                   <span className="userProfiles  shadow-sm p-3 rounded"> <i className="bi bi-person-fill"></i>  User Profiles </span>
                                 </Link>
                             </Col>
                         </Row>
@@ -44,7 +45,7 @@ const Dashboard = () => {
                                         <Row>
                                             <Col  className="  text-secondary fw-normal  text-start ms-2 fs-5">Theme</Col>
                                             <Col className="text-end text-success fs-4">
-                                            <i class="bi bi-suit-club-fill"></i>
+                                            <i className="bi bi-suit-club-fill"></i>
                                             </Col>
                                         </Row>
                                         <Row>
@@ -60,7 +61,7 @@ const Dashboard = () => {
                                         <Row>
                                             <Col  className="  text-secondary fw-normal   text-start ms-2 fs-5 ">Decks</Col>
                                             <Col className="text-end text-info fs-4">
-                                            <i class="bi bi-suit-diamond-fill"></i>
+                                            <i className="bi bi-suit-diamond-fill"></i>
                                             </Col>
                                         </Row>
                                         <Row>
@@ -76,7 +77,7 @@ const Dashboard = () => {
                                         <Row>
                                             <Col  className=" text-secondary fw-normal  text-start ms-2 fs-5 ">Challenges</Col>
                                             <Col className="text-end text-danger fs-4">
-                                            <i class="bi bi-suit-heart-fill"></i></Col>
+                                            <i className="bi bi-suit-heart-fill"></i></Col>
                                         </Row>
                                         <Row>
                                         <Col  className="  text-secondary  text-start ms-2 mt-3 fs-2">03</Col>
@@ -90,8 +91,8 @@ const Dashboard = () => {
                                     <Card.Body className="bg-white text-dark fw-bold  ">
                                         <Row>
                                             <Col  className="   text-secondary  fw-normal  text-start ms-2 fs-5">Customers</Col>
-                                            <Col className="text-end text-primary fs-4">
-                                            <i class="bi bi-suit-spade-fill"></i></Col>
+                                            <Col className="text-end text-warning fs-4">
+                                            <i className="bi bi-suit-spade-fill"></i></Col>
                                         </Row>
                                         <Row>
                                         <Col  className=" text-secondary  text-start ms-2 mt-3 fs-2">02</Col>

@@ -31,7 +31,7 @@ const MyProfile = () => {
     };
 
     const saveData = () => {
-        if(isEdit){
+        if(!isEdit){
         setMyName(formData.Name);
         setMyEmail(formData.Email)
         toggleEdit();

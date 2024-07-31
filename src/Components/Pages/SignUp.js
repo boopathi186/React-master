@@ -6,7 +6,7 @@ import '../Css/LoginStyle.css';
 import { Col, Row } from 'react-bootstrap';
 import deck from '../Assets/Frame 365.png';
 import hotdeck from '../Assets/Frame 629075.png';
-
+import '../Css/SignUpStyle.css';
 const SignUp = () => {
     const validationSchema = Yup.object().shape({
         username: Yup.string()
@@ -14,7 +14,7 @@ const SignUp = () => {
             .max(10, "Too long")
             .required("Username is required"),
         email: Yup.string()
-            .email("Invalid format email")
+            .email("Invalid email format ")
             .required("Email is required"),
         password: Yup.string()
             .required("Password is required")
@@ -41,7 +41,7 @@ const SignUp = () => {
             </Col>
             <Col  lg={6} sm={12}>
                 <div className='login row m-0 d-flex align-items-center vh-100'>
-                    <div className='container bg-white  form-control w-75 border border-0 rounded-3'>
+                    <div className='container bg-light bg-opacity-25  form-control w-75 border border-0 rounded-3'>
                         <Formik
                             initialValues={{
                                 email: '', username: '', password: '', confirmPassword: '',
@@ -55,7 +55,7 @@ const SignUp = () => {
                             }}
                         >
                             {({ isSubmitting }) => (
-                                <Form className='border-white shadow p-3 rounded-3 mx-xl-5 mx-0' >
+                                <Form className='border-white shadow-sm bg-white p-3 rounded-3 mx-xl-5 mx-0' >
                                     <Col className='col-5 mb-5'>
                                         <div className='row'>
                                             <img src={hotdeck} alt='logo_img' className='h-50 w-50' />
@@ -74,7 +74,7 @@ const SignUp = () => {
                                         </div>
                                     ))}
                                     <div>
-                                        <button className='bg-danger text-white border border-none w-100 mt-2 p-2 rounded' type="submit" disabled={isSubmitting}>
+                                        <button className='submit text-white border border-none w-100 mt-2 p-2 rounded' type="submit" disabled={isSubmitting}>
                                             Submit
                                         </button>
                                     </div>

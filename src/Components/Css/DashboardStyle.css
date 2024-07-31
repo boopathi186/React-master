@@ -1,26 +1,7 @@
-/* .theme
+.userProfiles
 {
-   background-color: white;
-   font-size: large;
-} */
-.decks
-{
-    background-image: url('https://c4.wallpaperflare.com/wallpaper/769/592/15/ace-art-background-card-wallpaper-thumb.jpg');
-   background-position: center;
-   background-size: cover;font-size: large;
-}
-.challenges
-{
-   
-   background-position: center;
-   background-size: cover;font-size: large;
-}
-.customers
-{
-    background-image: url('https://t4.ftcdn.net/jpg/02/90/52/13/360_F_290521309_UpvOs8Dwp67xAppU7ebUsITQYJAtj0Z4.jpg');
-   background-position: center;
-   background-size: cover;font-size: large;
-}
+    background-color: #d51b0c;
+} 
 .userprofile
 {
     background:#fafcfb;

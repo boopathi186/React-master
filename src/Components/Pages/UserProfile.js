@@ -117,7 +117,7 @@ const Users = () => {
                 <div className=" w-100 p-3 mt-3 position-relative">
                 <i className="search bi bi-search   text-secondary  fs-3"></i>
                   <input
-                    className='searchbar w-100 ps-5   shadow rounded-4 border-0 p-3' 
+                    className='searchbar w-100 ps-5   shadow-sm rounded-4 border-0 p-3' 
                     onChange={handleSearch}
                     type="text"
                     value={searchTerm}
@@ -128,7 +128,7 @@ const Users = () => {
               </Col>
               <Col className='d-none d-md-block'>
                 <Link to="/userprofile/create">
-                  <Button className='bg-danger border border-none shadow-sm text-white mt-4 fw-semibold rounded-3 py-3'
+                  <Button className='createButton  border border-none shadow-sm  mt-4 fw-semibold rounded-3 py-3'
                    variant='none'>+ Create Product</Button>
                 </Link>
               </Col>
@@ -183,5 +183,26 @@ const Users = () => {
     </div>
   );
 };
-
 export default Users;
+// import { useDispatch,useSelector } from "react-redux";
+// import { fetchTodo } from "../Redux/TodoSlicer";
+// import React, { useEffect } from 'react'
+// const Users = () => {
+//   const dispatch=useDispatch();
+//   const data = useSelector(state => state.todo)
+//   useEffect (() => {
+//     dispatch(fetchTodo())
+//   },[])
+//   console.log(data);
+//   return (
+//     <div>
+//       {
+//         data.data.map(todo => {
+//           return <p>{todo.title}</p>
+//         })
+//       }
+//     </div>
+//   )
+// }
+
+// export default Users

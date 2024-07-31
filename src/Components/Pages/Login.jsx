@@ -71,7 +71,7 @@ const Login = () => {
     
     if (loading)
         return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100"><Spinner animation="border" /></h4>;
-      if (error) return <p>Error Fetching data: {error.message}</p>;
+      if (error) return <p className=' d-flex text-danger mt-5 justify-content-center fs-1 align-items-center vh-100'>Error Fetching data {error.message}</p>;
     return (
         <Row className='row-cols-lg-2 m-0'>
             <Col lg={6} className='p-0 d-lg-block d-none'>
@@ -79,13 +79,13 @@ const Login = () => {
             </Col>
             <Col lg={6} sm={12}>
                 <div className='login row m-0 d-flex align-items-center vh-100'>
-                    <div className='container bg-white col-12 form-control w-75 border border-0 rounded-3'>
+                    <div className='container bg-light col-12 form-control w-75 border border-0 rounded-3'>
                         <Formik
                             initialValues={{ email: '', password: '' }}
                             validationSchema={validationSchema}
                             onSubmit={handleSubmit}>
                             {({ isSubmitting }) => (
-                                <Form className='border-white shadow p-3 rounded-3'>
+                                <Form className='border-white shadow-sm p-3 rounded-3 bg-white'>
                                     <Col className='col-5 mb-5'>
                                         <div className='row'>
                                             <img src={hotdeck} alt='logo_img' className='h-25 w-50' />
@@ -112,7 +112,7 @@ const Login = () => {
                                     ))}
                                     {error && <div style={{ color: 'red' }}>{error}</div>}
                                     <div>
-                                        <button className='w-100 border rounded-3 border-none bg-danger text-white mb-3 mt-3 p-2'
+                                        <button className='loginbutton w-100 border rounded-3 border-none  text-white mb-3 mt-3 p-2'
                                             type='submit' disabled={isSubmitting}>
                                             Login
                                         </button>
