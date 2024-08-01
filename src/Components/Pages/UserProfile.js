@@ -9,33 +9,33 @@ import Swal from 'sweetalert2';
 import moment from 'moment';
 import { deleteProducts, getproducts } from './ApiCall';
 import Paginate from './Paginate';
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTodo } from "../Redux/TodoSlicer";
+import { remove } from '../Redux/TodoSlicer';
 const Users = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(0); // Updated for 0-based index
+  const [currentPage, setCurrentPage] = useState(0);
   const recordsPerPage = 10;
   let deleteId = null;
 
-  const fetchData = () => {
-    getproducts()
-      .then(response => {
-        setData(response.data);
-        setFilteredData(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error);
-        setLoading(false);
-      });
-  };
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.user.data);
+  const loading = useSelector(state => state.user.isLoading);
+  const error= useSelector(state => state.user.error);
+  useEffect(() => {
+    console.log(data);
+    dispatch(fetchTodo())
+    
+  }, [dispatch]);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (data) {
+      setFilteredData(data);
+    }
+  }, [data]);
 
   const handleShow = (id) => {
     deleteId = id;
@@ -48,47 +48,44 @@ const Users = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        onDelete(id);
+     
       }
     });
   };
 
-  const onDelete = (id) => {
-    deleteProducts(deleteId)
-      .then(() => {
-        const updatedData = data.filter(product => product.id !== deleteId);
-        setData(updatedData);
-        setFilteredData(updatedData);
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Deleted Successfully",
-          showConfirmButton: false,
-          timer: 1500
-        });
-      })
-      .catch(error => {
-        setError(error);
-      });
-  };
+  // const onDelete = (id) => {
+  //   deleteProducts(deleteId)
+  //     .then(() => {
+  //       const updatedData = data.filter(product => product.id !== deleteId);
+  //       setFilteredData(updatedData);
+  //       Swal.fire({
+  //         position: "center",
+  //         icon: "success",
+  //         title: "Deleted Successfully",
+  //         showConfirmButton: false,
+  //         timer: 1500
+  //       });
+  //     })
+  //     .catch(error => {
+  //       error=error;
+  //     });
+  // };
 
   const handlePageClick = (event) => {
     const selectedPage = event.selected;
     setCurrentPage(selectedPage);
-    console.log(event.selected);
   };
 
   const handleSearch = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
-    const filtered = data.filter(product =>
+    const filtered = data.data.filter(product =>
       product.title.includes(value) ||                 
       product.id.toString().includes(value) ||
       product.price.toString().includes(value)
     );
-     setFilteredData(filtered);
+    setFilteredData(filtered);
     setCurrentPage(0);
-   
   };
 
   const firstIndex = currentPage * recordsPerPage;
@@ -114,10 +111,10 @@ const Users = () => {
           <div className="text-end container-fluid">
             <div className='row'>
               <Col md={6}>
-                <div className=" w-100 p-3 mt-3 position-relative">
-                <i className="search bi bi-search   text-secondary  fs-3"></i>
+                <div className="w-100 p-3 mt-3 position-relative">
+                  <i className="search bi bi-search text-secondary fs-3"></i>
                   <input
-                    className='searchbar w-100 ps-5   shadow-sm rounded-4 border-0 p-3' 
+                    className='searchbar w-100 ps-5 shadow-sm rounded-4 border-0 p-3' 
                     onChange={handleSearch}
                     type="text"
                     value={searchTerm}
@@ -128,7 +125,7 @@ const Users = () => {
               </Col>
               <Col className='d-none d-md-block'>
                 <Link to="/userprofile/create">
-                  <Button className='createButton  border border-none shadow-sm  mt-4 fw-semibold rounded-3 py-3'
+                  <Button className='createButton border border-none shadow-sm mt-4 fw-semibold rounded-3 py-3'
                    variant='none'>+ Create Product</Button>
                 </Link>
               </Col>
@@ -159,7 +156,7 @@ const Users = () => {
                         <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}>{moment(product.createdAt).format('LT')}</Link>
                       </td>
                       <td className='text-center'>
-                        <Button onClick={() => handleShow(product.id)} variant='none px-sm-1 px-0'>
+                        <Button onClick={() => dispatch(remove)} variant='none px-sm-1 px-0'>
                           <i className="bi bi-trash3-fill text-danger px-1 "></i>
                         </Button>
                         <Link className='px-1 ' to={`/userProfile/update/${product.id}`}><i className="edit bi bi-pencil-square "></i></Link>
@@ -183,7 +180,9 @@ const Users = () => {
     </div>
   );
 };
+
 export default Users;
+
 // import { useDispatch,useSelector } from "react-redux";
 // import { fetchTodo } from "../Redux/TodoSlicer";
 // import React, { useEffect } from 'react'

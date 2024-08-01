@@ -15,7 +15,7 @@ export const updateItem = (item) => ({
   payload: item,
 });
 
-export const deleteItem = (itemId) => ({
+export const deleteItem = (id) => ({
   type: DELETE_ITEM,
-  payload: itemId,
+  payload: id,
 });

@@ -12,6 +12,7 @@ import SignUp from './Components/Pages/SignUp';
 import Login from './Components/Pages/Login';
 import PrivateRoute, { PrivateRoutes } from './Components/Pages/PrivateRouter';
 import ProductInfo from './Components/Pages/ProductDetails';
+import ThemeForm from './Components/Pages/CreateTheme';
 function App() {
   return (
     <div className='App'>
@@ -29,6 +30,7 @@ function App() {
             <Route path='/dashboard/userProfile' element={<UserProfile />} />
             <Route path='/dashboard/themes' element={<Theme />}></Route>
             <Route path='/theme' element={<Theme />} />
+            <Route path='/theme/create_theme' element={<ThemeForm/>}/>
             <Route path='/myprofile' element={<MyProfile />} />
             <Route path='/userProfile/:userId' element={<ProductInfo />} />
             <Route path='/userprofile/create' element={<Create />} />

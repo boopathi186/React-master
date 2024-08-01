@@ -45,7 +45,7 @@ const Login = () => {
                         toast.onmouseenter = Swal.stopTimer;
                         toast.onmouseleave = Swal.resumeTimer;
                     }
-                });},2000);
+                });},1000);
               
             } else {
                 setError('Invalid credentials');

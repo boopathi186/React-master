@@ -1,19 +1,21 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 import { getproducts } from "../Pages/ApiCall";
-export const fetchTodo = createAsyncThunk("fetchTodo",async() => {
-    const data = await fetch ('https://api.escuelajs.co/api/v1/products')
-    return data.json();
+import { Add_Item,Delete_Item,Update_Item } from "./Types";
+export const fetchTodo = createAsyncThunk("user/fetchTodo",async() => {
+    const data = await getproducts();
+    return data.data;
+    
 })
 const todoSlice =createSlice({
-    name :'todo',
+    name :'user',
     initialState :{
-        isLoading :false,
+        isLoading :false,  
         data:[],
         error: false
     },
     extraReducers : (builder) =>{
         builder.addCase(fetchTodo.pending, (state,action) =>{
-            state.isLoading=true
+            state.isLoading=true;
         });
         builder.addCase(fetchTodo.fulfilled, (state,action) =>{
             state.isLoading=false;
@@ -22,7 +24,10 @@ const todoSlice =createSlice({
         builder.addCase(fetchTodo.rejected, (state,action) =>{
             state.error=true;
         });
-        
+        // remove : (state,action) => {
+        // state.user = state.user.filter(u => u.id !== action.payload)
+        // }
     }
 })
+export const {remove}  =todoSlice.actions
 export default todoSlice.reducer;

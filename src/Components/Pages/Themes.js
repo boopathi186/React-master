@@ -1,7 +1,8 @@
-import { Button, Col } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/sidebar";
 import Toggle from "../Toggle/Toggle";
+import { Link } from "react-router-dom";
 
 
 const Theme = () => {
@@ -15,9 +16,21 @@ const Theme = () => {
                     <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
                         <Header />
                     </div>
-                    <div className=' col-12 d-lg-none d-block shadow'><Toggle/></div>
+                    <div className=' col-12 d-lg-none d-block shadow'><Toggle /></div>
                     <div className="row m-0 p-0 mt-4">
-                       <Col className="col-12"><Button variant="danger text-center mx-4" >+Create Theme</Button></Col> 
+                        <Row className=" row-cols-1  row-cols-md-2 row-cols-xl-4 g-4 mt-3  m-0">
+
+                            <Col>
+                                <Link className=' text-decoration-none text-white fw-bold' to='/theme/create_theme'>
+                                    <Card className="theme h-100 shadow-sm rounded text-center border-0">
+                                        <Card.Body className="bg-light bg-opacity-75 p-0 m-0 text-dark fw-bold  ">
+                                            <Row className="d-flex align-items-center h-100 justify-content-center text-danger fs-4 rounded-3 bg-white shadow-sm">
+                                                Create Themes +
+                                            </Row>
+                                        </Card.Body>
+                                    </Card></Link>
+                            </Col>
+                        </Row>
                     </div>
                 </div>
             </div>
