@@ -1,7 +1,6 @@
 // services/productsApi.js
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import axiosInstance from '../Pages/AxiosConfig';
-import { updateProduct } from '../Pages/ApiCall';
+
 
 export const productsApi = createApi({
     reducerPath: 'productsApi',

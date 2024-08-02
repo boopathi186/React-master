@@ -5,7 +5,7 @@ import Sidebar from "../Sidebar/sidebar";
 import Header from "../Header/Header";
 import Toggle from "../Toggle/Toggle";
 import Swal from "sweetalert2";
-import { getproducts, updateProduct } from "./ApiCall";
+import { getproducts } from "./ApiCall";
 import { useUpdateProductMutation } from "../features/ApiSlice";
 
 const Update = () => {
