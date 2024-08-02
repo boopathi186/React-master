@@ -1,35 +1,22 @@
-import '../Css/UsersStyle.css';
+// Users.js
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { Button, Col, Row, Spinner, Table } from "react-bootstrap";
+import { useGetProductsQuery,useDeleteProductMutation } from '../features/ApiSlice';
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/sidebar";
-import { useEffect, useState } from 'react';
-import { Button, Col, Row, Spinner, Table } from "react-bootstrap";
 import Toggle from '../Toggle/Toggle';
+import Paginate from './Paginate';
 import Swal from 'sweetalert2';
 import moment from 'moment';
-import { deleteProducts, getproducts } from './ApiCall';
-import Paginate from './Paginate';
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTodo } from "../Redux/TodoSlicer";
-import { remove } from '../Redux/TodoSlicer';
+import '../Css/UsersStyle.css';
 const Users = () => {
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-  const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const recordsPerPage = 10;
-  let deleteId = null;
-
-  const dispatch = useDispatch();
-  const data = useSelector(state => state.user.data);
-  const loading = useSelector(state => state.user.isLoading);
-  const error= useSelector(state => state.user.error);
-  useEffect(() => {
-    console.log(data);
-    dispatch(fetchTodo())
-    
-  }, [dispatch]);
+  const { data, error, isLoading } = useGetProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation();
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     if (data) {
@@ -38,7 +25,6 @@ const Users = () => {
   }, [data]);
 
   const handleShow = (id) => {
-    deleteId = id;
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -48,44 +34,50 @@ const Users = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-     
+        onDelete(id);
       }
     });
   };
 
-  // const onDelete = (id) => {
-  //   deleteProducts(deleteId)
-  //     .then(() => {
-  //       const updatedData = data.filter(product => product.id !== deleteId);
-  //       setFilteredData(updatedData);
-  //       Swal.fire({
-  //         position: "center",
-  //         icon: "success",
-  //         title: "Deleted Successfully",
-  //         showConfirmButton: false,
-  //         timer: 1500
-  //       });
-  //     })
-  //     .catch(error => {
-  //       error=error;
-  //     });
-  // };
-
-  const handlePageClick = (event) => {
-    const selectedPage = event.selected;
-    setCurrentPage(selectedPage);
+  const onDelete = async (id) => {
+    try {
+      await deleteProduct(id).unwrap();
+      setFilteredData(filteredData.filter(product => product.id !== id));
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Deleted Successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    } catch (error) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Error deleting product",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
   };
 
   const handleSearch = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
-    const filtered = data.data.filter(product =>
-      product.title.includes(value) ||                 
-      product.id.toString().includes(value) ||
-      product.price.toString().includes(value)
-    );
-    setFilteredData(filtered);
-    setCurrentPage(0);
+    if (data) {
+      const filtered = data.filter(product =>
+        product.title.includes(value) ||
+        product.id.toString().includes(value) ||
+        product.price.toString().includes(value)
+      );
+      setFilteredData(filtered);
+      setCurrentPage(0);
+    }
+  };
+
+  const handlePageClick = (event) => {
+    const selectedPage = event.selected;
+    setCurrentPage(selectedPage);
   };
 
   const firstIndex = currentPage * recordsPerPage;
@@ -93,9 +85,8 @@ const Users = () => {
   const records = filteredData.slice(firstIndex, lastIndex);
   const pageCount = Math.ceil(filteredData.length / recordsPerPage);
 
-  if (loading)
-    return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100"><Spinner animation="border" /></h4>;
-  if (error) return <p>Error Fetching data: {error.message}</p>;
+  if (isLoading) return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100"><Spinner animation="border" /></h4>;
+  if (error) return <p>Error fetching data: {error.message}</p>;
 
   return (
     <div>
@@ -156,7 +147,7 @@ const Users = () => {
                         <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}>{moment(product.createdAt).format('LT')}</Link>
                       </td>
                       <td className='text-center'>
-                        <Button onClick={() => dispatch(remove)} variant='none px-sm-1 px-0'>
+                        <Button onClick={() => handleShow(product.id)} variant='none px-sm-1 px-0'>
                           <i className="bi bi-trash3-fill text-danger px-1 "></i>
                         </Button>
                         <Link className='px-1 ' to={`/userProfile/update/${product.id}`}><i className="edit bi bi-pencil-square "></i></Link>
@@ -182,26 +173,3 @@ const Users = () => {
 };
 
 export default Users;
-
-// import { useDispatch,useSelector } from "react-redux";
-// import { fetchTodo } from "../Redux/TodoSlicer";
-// import React, { useEffect } from 'react'
-// const Users = () => {
-//   const dispatch=useDispatch();
-//   const data = useSelector(state => state.todo)
-//   useEffect (() => {
-//     dispatch(fetchTodo())
-//   },[])
-//   console.log(data);
-//   return (
-//     <div>
-//       {
-//         data.data.map(todo => {
-//           return <p>{todo.title}</p>
-//         })
-//       }
-//     </div>
-//   )
-// }
-
-// export default Users

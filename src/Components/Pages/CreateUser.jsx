@@ -9,10 +9,11 @@ import Toggle from "../Toggle/Toggle";
 import Swal from "sweetalert2";
 import '../Css/Createstyle.css';
 import { createProducts } from "./ApiCall";
+import { useCreateProductMutation } from "../features/ApiSlice";
 
 const Create = () => {
     const navigate = useNavigate();
-
+     const [createProduct]=useCreateProductMutation();
     const initialValues = {
         title: "",
         price: "",
@@ -28,7 +29,7 @@ const Create = () => {
     });
 
     const postData = (values) => {
-        createProducts(values)
+       createProduct(values)
             .then(response => {
                 console.log(response.data);
                 Swal.fire({

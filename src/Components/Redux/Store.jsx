@@ -1,9 +1,11 @@
-import {configureStore} from '@reduxjs/toolkit';
-import todoReducer from '../Redux/TodoSlicer'
-import { remove } from '../Redux/TodoSlicer';
+
+import { configureStore } from '@reduxjs/toolkit';
+import { productsApi } from '../features/ApiSlice';
+
 export const store = configureStore({
-    reducer : { 
-         user : todoReducer
-        }
-  
-})
+  reducer: {
+    [productsApi.reducerPath]: productsApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(productsApi.middleware),
+});

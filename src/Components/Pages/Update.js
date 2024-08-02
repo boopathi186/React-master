@@ -6,6 +6,7 @@ import Header from "../Header/Header";
 import Toggle from "../Toggle/Toggle";
 import Swal from "sweetalert2";
 import { getproducts, updateProduct } from "./ApiCall";
+import { useUpdateProductMutation } from "../features/ApiSlice";
 
 const Update = () => {
     const { id } = useParams();
@@ -19,6 +20,7 @@ const Update = () => {
             [event.target.name]: event.target.value
         });
     };
+const [updateProduct] = useUpdateProductMutation();
 
     useEffect(() => {
         getproducts(id)
@@ -35,7 +37,7 @@ const Update = () => {
     }, [id]);
 
     const putData = () => {
-        updateProduct(id, info)
+       updateProduct({id:id, ...info})
             .then(response => {
                 SetInfo(response.info);
                 console.log(response.data);
