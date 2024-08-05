@@ -32,4 +32,4 @@ export const productsApi = createApi({
     }),
 });
 
-export const { useGetProductsQuery, useDeleteProductMutation, useCreateProductMutation , useUpdateProductMutation } = productsApi;
+export const {useGetProductsByIdQuery, useGetProductsQuery, useDeleteProductMutation, useCreateProductMutation , useUpdateProductMutation } = productsApi;

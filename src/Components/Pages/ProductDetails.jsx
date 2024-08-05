@@ -12,7 +12,6 @@ const ProductInfo = () => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
     useEffect(() => {
         axios.get(`https://api.escuelajs.co/api/v1/products/${userId}`)
             .then(response => {
@@ -43,7 +42,9 @@ const ProductInfo = () => {
                     <div className="product-details  p-2 mt-5 shadow-sm">
                         <h2 className="text-danger text-center mb-4 fw-bold fs-2 ">Product Details</h2>
                         <h3 className="mb-3 fs-4 text-center p-1">{user.title}</h3>
+                        
                         <p className="mb-1"><strong className="text-start">ID:</strong> {user.id}</p>
+                        <p className="mb-1 text-center"><img src={user.images} width={200} height={150} alt="product_img"></img></p>
                         <p className="mb-1"><strong>Price:</strong> ${user.price}</p>
                         <p className="mb-1 fs-5"><strong>Description:</strong> {user.description}</p>
                         <p className="mb-1"><strong>Creation Date:</strong> {new Date(user.creationAt).toLocaleString()}</p>
