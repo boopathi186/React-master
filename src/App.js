@@ -5,13 +5,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Dashboard from './Components/Pages/Dashboard';
 import MyProfile from './Components/Content/MyProfile';
 import NotFound from './Components/Pages/NotFound';
-import UserProfile from './Components/Pages/UserProfile';
-import Create from './Components/Pages/CreateUser';
+import UserProfile from './Components/Pages/UserProfile.tsx';
+import Create from './Components/Pages/CreateUser.tsx';
 import Update from './Components/Pages/Update';
 import SignUp from './Components/Pages/SignUp';
 import Login from './Components/Pages/Login';
 import PrivateRoute, { PrivateRoutes } from './Components/Pages/PrivateRouter';
-import ProductInfo from './Components/Pages/ProductDetails';
+import ProductInfo from './Components/Pages/ProductDetails.tsx';
 import ThemeForm from './Components/Pages/CreateTheme';
 function App() {
   return (

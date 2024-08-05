@@ -8,15 +8,22 @@ import Header from "../Header/Header";
 import Toggle from "../Toggle/Toggle";
 import Swal from "sweetalert2";
 import '../Css/Createstyle.css';
-import { createProducts } from "./ApiCall";
 import { useCreateProductMutation } from "../features/ApiSlice";
 
-const Create = () => {
+interface Details {
+    title: string;
+    price: number;
+    description: string;
+    categoryId: number;
+    images: string[];
+}
+const Create: React.FC = () => {
     const navigate = useNavigate();
-     const [createProduct]=useCreateProductMutation();
-    const initialValues = {
+    const [createProduct] = useCreateProductMutation();
+
+    const initialValues: Details = {
         title: "",
-        price: "",
+        price: 0,
         description: "",
         images: ['https://pixabay.com/vectors/apparel-clothe-clothing-polo-golf-162192/'],
         categoryId: 1,
@@ -28,8 +35,8 @@ const Create = () => {
         description: Yup.string().required("Description is required"),
     });
 
-    const postData = (values) => {
-       createProduct(values)
+    const postData = (values: Details) => {
+        createProduct(values)
             .then(response => {
                 console.log(response.data);
                 Swal.fire({
@@ -39,6 +46,7 @@ const Create = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+
                 navigate('/dashboard/userProfile');
             })
             .catch((error) => {
@@ -112,9 +120,9 @@ const Create = () => {
                                                     </Row>
                                                 ))}
                                                 <Row className="d-flex mt-4">
-                                                    <Col  className="text-center">
+                                                    <Col className="text-center">
                                                         <Button type="submit" variant="primary m-2 ">Create Product</Button>
-                                                       <Button type="button" variant="danger m-2" onClick={ret}>Cancel</Button>
+                                                        <Button type="button" variant="danger m-2" onClick={ret}>Cancel</Button>
                                                     </Col>
                                                 </Row>
                                             </Form>

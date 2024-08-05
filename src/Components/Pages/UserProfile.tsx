@@ -1,8 +1,7 @@
-// Users.js
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Button, Col, Row, Spinner, Table } from "react-bootstrap";
-import { useGetProductsQuery,useDeleteProductMutation } from '../features/ApiSlice';
+import { useGetProductsQuery, useDeleteProductMutation } from '../features/ApiSlice';
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/sidebar";
 import Toggle from '../Toggle/Toggle';
@@ -10,20 +9,29 @@ import Paginate from './Paginate';
 import Swal from 'sweetalert2';
 import moment from 'moment';
 import '../Css/UsersStyle.css';
+import React from 'react';
+type Tables={
+  title: string;
+  price: number;
+  id: number;
+  description: string;
+  createdAt: string;
+  
+}
+type tableValue = Tables [];
 const Users = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const recordsPerPage = 10;
-  const { data, error, isLoading } = useGetProductsQuery();
+  const { data, isLoading,refetch } = useGetProductsQuery([]);
   const [deleteProduct] = useDeleteProductMutation();
-  const [filteredData, setFilteredData] = useState([]);
-
+  const [filteredData, setFilteredData] = useState <tableValue>([]);
   useEffect(() => {
+    refetch();
     if (data) {
-      setFilteredData(data);
+      setFilteredData(data); 
     }
   }, [data]);
-
   const handleShow = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -38,7 +46,6 @@ const Users = () => {
       }
     });
   };
-
   const onDelete = async (id) => {
     try {
       await deleteProduct(id).unwrap();
@@ -58,6 +65,8 @@ const Users = () => {
         showConfirmButton: false,
         timer: 1500
       });
+      console.log(error);
+      
     }
   };
 
@@ -86,8 +95,7 @@ const Users = () => {
   const pageCount = Math.ceil(filteredData.length / recordsPerPage);
 
   if (isLoading) return <h4 className="d-flex text-danger mt-5 justify-content-center align-items-center vh-100"><Spinner animation="border" /></h4>;
-  if (error) return <p>Error fetching data: {error.message}</p>;
-
+ 
   return (
     <div>
       <Row className="m-0 p-0">
@@ -105,7 +113,7 @@ const Users = () => {
                 <div className="w-100 p-3 mt-3 position-relative">
                   <i className="search bi bi-search text-secondary fs-3"></i>
                   <input
-                    className='searchbar w-100 ps-5 shadow-sm rounded-4 border-0 p-3' 
+                    className='searchbar w-100 ps-5 shadow-sm rounded-4 border-0 p-3'
                     onChange={handleSearch}
                     type="text"
                     value={searchTerm}
@@ -117,7 +125,7 @@ const Users = () => {
               <Col className='d-none d-md-block'>
                 <Link to="/userprofile/create">
                   <Button className='createButton border border-none shadow-sm mt-4 fw-semibold rounded-3 py-3'
-                   variant='none'>+ Create Product</Button>
+                    variant='none'>+ Create Product</Button>
                 </Link>
               </Col>
             </div>
@@ -131,40 +139,49 @@ const Users = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {records.map((product, index) => (
-                    <tr className='border-bottom ' key={product.id}>
-                      <td className='text-center text-secondary'>{firstIndex + index + 1}</td>
-                      <td className='text-center'>
-                        <Link className="text-decoration-none text-secondary " to={`/userProfile/${product.id}`}>{product.title}</Link>
-                      </td>
-                      <td className='text-center'>
-                        <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}><span className='fw-bold'>$</span> {product.price}</Link>
-                      </td>
-                      <td className='text-center'>
-                        <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}>{moment(product.createdAt).format('LL')}</Link>
-                      </td>
-                      <td className='text-center'>
-                        <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}>{moment(product.createdAt).format('LT')}</Link>
-                      </td>
-                      <td className='text-center'>
-                        <Button onClick={() => handleShow(product.id)} variant='none px-sm-1 px-0'>
-                          <i className="bi bi-trash3-fill text-danger px-1 "></i>
-                        </Button>
-                        <Link className='px-1 ' to={`/userProfile/update/${product.id}`}><i className="edit bi bi-pencil-square "></i></Link>
+                  {records.length > 0 ? (
+                    records.map((product, index: number) => (
+                      <tr className='border-bottom ' key={product.id}>
+                        <td className='text-center text-secondary'>{firstIndex + index + 1}</td>
+                        <td className='text-center'>
+                          <Link className="text-decoration-none text-secondary " to={`/userProfile/${product.id}`}>{product.title}</Link>
+                        </td>
+                        <td className='text-center'>
+                          <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}><span className='fw-bold'>$</span> {product.price}</Link>
+                        </td>
+                        <td className='text-center'>
+                          <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}>{moment(product.createdAt).format('LL')}</Link>
+                        </td>
+                        <td className='text-center'>
+                          <Link className="text-decoration-none text-secondary" to={`/userProfile/${product.id}`}>{moment(product.createdAt).format('LT')}</Link>
+                        </td>
+                        <td className='text-center'>
+                          <Button onClick={() => handleShow(product.id)} variant='none px-sm-1 px-0'>
+                            <i className="bi bi-trash3-fill text-danger px-1 "></i>
+                          </Button>
+                          <Link className='px-1 ' to={`/userProfile/update/${product.id}`}><i className="edit bi bi-pencil-square "></i></Link>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={6} className="text-center text-danger">
+                        No matches found
                       </td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </Table>
             </div>
             <Col className='d-md-none d-block text-center'>
-                <Link to="/userprofile/create">
-                  <Button className='bg-danger border border-none shadow-sm text-white mt-3 rounded-3 py-3' variant='none'>+ Create Product</Button>
-                </Link>
-              </Col>
+              <Link to="/userprofile/create">
+                <Button className='bg-danger border border-none shadow-sm text-white mt-3 rounded-3 py-2 ' variant='none'>+ Create Product</Button>
+              </Link>
+            </Col>
             <div className='mt-3'>
               <Paginate pageCount={pageCount} handlePageClick={handlePageClick} />
             </div>
+
           </div>
         </div>
       </Row>

@@ -15,7 +15,7 @@ const Paginate = ({ pageCount, handlePageClick }) => {
         
         previousLabel="Prev"
         renderOnZeroPageCount={null}
-        containerClassName='pagination  justify-content-center '
+        containerClassName='pagination  justify-content-md-center justify-content-between'
         pageClassName='page-item '
         pageLinkClassName='page-link text-danger  border-0 rounded-2 m-1 shadow-sm d-md-block d-none ' 
         previousLinkClassName='page-link text-danger border-white rounded-3 fw-bold shadow bg-light mx-2'
