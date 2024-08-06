@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Profile from '../Assets/profilepic.png';
-import Exit from '../Buttons/CancelButton';
+import Exit from '../Buttons/CancelButton.tsx';
 import EditButton from '../Buttons/EditButton';
-import Save from '../Buttons/SaveButton';
+import Save from '../Buttons/SaveButton.tsx';
 import '../Css/Contentstyle.css';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/sidebar';

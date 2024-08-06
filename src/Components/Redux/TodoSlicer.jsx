@@ -1,77 +1,55 @@
-import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
-import { getproducts } from "../Pages/ApiCall";
-import { Add_Item,Delete_Item,Update_Item } from "./Types";
-export const fetchTodo = createAsyncThunk("user/fetchTodo",async() => {
-    const data = await getproducts();
-    return data.data;
-    
-})
-const todoSlice =createSlice({
-    name :'user',
-    initialState :{
-        isLoading :false,  
-        data:[],
-        error: false
-    },
-    extraReducers : (builder) =>{
-        builder.addCase(fetchTodo.pending, (state,action) =>{
-            state.isLoading=true;
-        });
-        builder.addCase(fetchTodo.fulfilled, (state,action) =>{
-            state.isLoading=false;
-            state.data= action.payload
-        });
-        builder.addCase(fetchTodo.rejected, (state,action) =>{
-            state.error=true;
-        });
-    }
-})
-export const {remove}  =todoSlice.actions
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getproducts } from '../Pages/ApiCall';
+
+
+export const fetchTodo = createAsyncThunk('user/fetchTodo', async () => {
+  const response = await getproducts();
+  return response.data;
+});
+
+const todoSlice = createSlice({
+  name: 'user',
+  initialState: {
+    isLoading: false,
+    data: [],
+    error: false,
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchTodo.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchTodo.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    });
+    builder.addCase(fetchTodo.rejected, (state) => {
+      state.isLoading = false;
+      state.error = true;
+    });
+  },
+});
+
 export default todoSlice.reducer;
 
-// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import { getproducts } from '../Pages/ApiCall';
-// import { ADD_ITEM, DELETE_ITEM, UPDATE_ITEM } from './Types';
-// export const fetchTodo = createAsyncThunk('user/fetchTodo', async () => {
-//   const response = await getproducts();
-//   return response.data;
-// });
+// import {Fetch_productFailure,Fetch_productSuccess,Fetch_productReq } from './Types';
 
-// const todoSlice = createSlice({
-//   name: 'user',
-//   initialState: {
-//     isLoading: false,
-//     data: [],
-//     error: false,
-//   },
-//   reducers: {
-//     addItem: (state, action) => {
-//       state.data.push(action.payload);
-//     },
-//     deleteItem: (state, action) => {
-//       state.data = state.data.filter(item => item.id !== action.payload);
-//     },
-//     updateItem: (state, action) => {
-//       const index = state.data.findIndex(item => item.id === action.payload.id);
-//       if (index !== -1) {
-//         state.data[index] = action.payload;
-//       }
-//     },
-//   },
-//   extraReducers: (builder) => {
-//     builder.addCase(fetchTodo.pending, (state) => {
-//       state.isLoading = true;
-//     });
-//     builder.addCase(fetchTodo.fulfilled, (state, action) => {
-//       state.isLoading = false;
-//       state.data = action.payload;
-//     });
-//     builder.addCase(fetchTodo.rejected, (state) => {
-//       state.isLoading = false;
-//       state.error = true;
-//     });
-//   },
-// });
+// const initialState = {
+//   isLoading: false,
+//   data: [],
+//   error: false,
+// };
 
-// export const { addItem, deleteItem, updateItem } = todoSlice.actions;
-// export default todoSlice.reducer;
+// const todoReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case Fetch_productReq:
+//       return { ...state, isLoading: true, error: false };
+//     case Fetch_productSuccess:
+//       return { ...state, isLoading: false, data: action.payload };
+//     case Fetch_productFailure:
+//       return { ...state, isLoading: false, error: true };
+//     default:
+//       return state;
+//   }
+// };
+
+// export default todoReducer;

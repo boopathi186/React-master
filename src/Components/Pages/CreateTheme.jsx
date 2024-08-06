@@ -3,8 +3,8 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import Sidebar from '../Sidebar/sidebar';
 import Header from '../Header/Header';
 import Toggle from '../Toggle/Toggle';
-import Save from '../Buttons/SaveButton'
-import Cancel from '../Buttons/CancelButton'
+import Save from '../Buttons/SaveButton.tsx'
+import Cancel from '../Buttons/CancelButton.tsx'
 const ThemeForm = () => {
   const [formData, setFormData] = useState({
     title: '',

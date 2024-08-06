@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Row, Col, Container, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -20,7 +20,7 @@ interface Details {
 const Create: React.FC = () => {
     const navigate = useNavigate();
     const [createProduct] = useCreateProductMutation();
-
+    const[IsCreating,setIsCreating]=useState<boolean>(false);
     const initialValues: Details = {
         title: "",
         price: 0,
@@ -36,7 +36,9 @@ const Create: React.FC = () => {
     });
 
     const postData = (values: Details) => {
+        setIsCreating(true)
         createProduct(values)
+        
             .then(response => {
                 console.log(response.data);
                 Swal.fire({
@@ -46,10 +48,12 @@ const Create: React.FC = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-
+               
                 navigate('/dashboard/userProfile');
             })
             .catch((error) => {
+                setIsCreating(true)
+
                 console.error("There was an error!", error);
                 Swal.fire({
                     title: 'Error!',
@@ -121,7 +125,7 @@ const Create: React.FC = () => {
                                                 ))}
                                                 <Row className="d-flex mt-4">
                                                     <Col className="text-center">
-                                                        <Button type="submit" variant="primary m-2 ">Create Product</Button>
+                                                        <Button type="submit" variant="primary m-2 " disabled={IsCreating} >Create Product</Button>
                                                         <Button type="button" variant="danger m-2" onClick={ret}>Cancel</Button>
                                                     </Col>
                                                 </Row>
