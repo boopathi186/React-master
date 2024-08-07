@@ -1,4 +1,4 @@
-import axiosInstance from '../Pages/AxiosConfig';
+import axiosInstance from '../Components/PrivateRouter/AxiosConfig';
 export const createProducts = (info) => {
     return axiosInstance.post('/products',info);
 };

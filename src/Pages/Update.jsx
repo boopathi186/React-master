@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Row, Container, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import Sidebar from "../Sidebar/sidebar";
-import Header from "../Header/Header";
-import Toggle from "../Toggle/Toggle";
+import Sidebar from "../Pages/sidebar";
+import Header from "../Components/Header/Header";
+import Toggle from "../Pages/Toggle";
 import Swal from "sweetalert2";
-import { getproducts } from "./ApiCall";
-import { useUpdateProductMutation } from "../features/ApiSlice";
+import { getproducts } from "../Pages/ApiCall";
+import { useUpdateProductMutation } from "../Redux/ApiSlice";
 
 const Update = () => {
     const { id } = useParams();

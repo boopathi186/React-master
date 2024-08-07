@@ -1,25 +1,35 @@
 import { Button } from "react-bootstrap";
-import edit from '../Assets/Edit.png';
 import { useState } from "react";
 import Swal from "sweetalert2";
+
 const EditButton = (props) => {
-    const[toggle,setToggle] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(false);
+
     const handleClick = () => {
-        setToggle(true)
+        setIsEnabled(!isEnabled);
         props.IsEnable();
-        if(toggle === true ){
-       Swal.fire({
-        position: "top",
-        title: "Enabled Edit!",
         
-      })
-    }
-    }
+        //enable the edit if true 
+        if (!isEnabled) {
+            Swal.fire({
+                position: "top",
+                title: "Enabled Edit!",
+            });
+        } else {
+            Swal.fire({
+                position: "top",
+                title: "Disabled Edit!",
+            });
+        }
+    };
+
     return (
         <>
-            <Button variant='none' onClick={handleClick}
-            ><img src={edit} width={15} height={15} alt="edit_img"></img> Edit</Button>
+            <Button variant='none' onClick={handleClick}>
+            <i className="edit bi bi-pencil-square "></i> Edit
+            </Button>
         </>
     );
-}
+};
+
 export default EditButton;

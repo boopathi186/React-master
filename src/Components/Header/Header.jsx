@@ -1,8 +1,8 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import myprofile from '../Assets/myprofile.png';
-import lock from '../Assets/lock.png';
-import logout from '../Assets/logout.png';
-import profilepic from '../Assets/profilepic.png';
+import myprofile from '../../Assets/myprofile.png';
+import lock from '../../Assets/lock.png';
+import logout from '../../Assets/logout.png';
+import profilepic from '../../Assets/profilepic.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';

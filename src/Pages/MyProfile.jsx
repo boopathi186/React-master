@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Profile from '../Assets/profilepic.png';
-import Exit from '../Buttons/CancelButton.tsx';
-import EditButton from '../Buttons/EditButton';
-import Save from '../Buttons/SaveButton.tsx';
+import Exit from '../Components/Buttons/CancelButton.tsx';
+import EditButton from '../Components/Buttons/EditButton.jsx';
+import Save from '../Components/Buttons/SaveButton.tsx';
 import '../Css/Contentstyle.css';
-import Header from '../Header/Header';
-import Sidebar from '../Sidebar/sidebar';
-import Toggle from '../Toggle/Toggle';
+import Header from '../Components/Header/Header.jsx';
+import Sidebar from './sidebar.jsx';
+import Toggle from './Toggle.jsx';
 import { Row, Col, Form } from 'react-bootstrap';
 
 const MyProfile = () => {

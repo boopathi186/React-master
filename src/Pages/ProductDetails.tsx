@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Row, Spinner } from "react-bootstrap";
 import axios from "axios";
-import Sidebar from "../Sidebar/sidebar";
-import Header from "../Header/Header";
-import Toggle from "../Toggle/Toggle";
+import Header from "../Components/Header/Header";
+import Toggle from "./Toggle";
 import '../Css/ProductInfo.css';
+import Sidebar from "./sidebar";
 
 type Product = {
     id: number;
@@ -51,7 +51,7 @@ const ProductInfo: React.FC = () => {
                 <div className="product-info vh-100 d-flex flex-column">
                     <Row className="m-0 p-0">
                         <Col xl={2} lg={2} className="p-0 m-0 vh-100 shadow d-lg-block d-none">
-                            <Sidebar />
+                            <Sidebar/>
                         </Col>
                         <Col xl={10} lg={10} className="p-0 m-0">
                             <div className="row border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">

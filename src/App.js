@@ -1,18 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Theme from './Components/Pages/Themes';
+import Theme from './Pages/Themes';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Dashboard from './Components/Pages/Dashboard';
-import MyProfile from './Components/Content/MyProfile';
-import NotFound from './Components/Pages/NotFound';
-import UserProfile from './Components/Pages/UserProfile.tsx';
-import Create from './Components/Pages/CreateUser.tsx';
-import Update from './Components/Pages/Update';
-import SignUp from './Components/Pages/SignUp';
-import Login from './Components/Pages/Login';
-import PrivateRoute, { PrivateRoutes } from './Components/Pages/PrivateRouter';
-import ProductInfo from './Components/Pages/ProductDetails.tsx';
-import ThemeForm from './Components/Pages/CreateTheme';
+import Dashboard from './Pages/Dashboard';
+import MyProfile from './Pages/MyProfile.jsx';
+import NotFound from './Pages/NotFound';
+import UserProfile from './Pages/UserProfile.tsx';
+import Create from './Pages/CreateUser.tsx';
+import Update from './Pages/Update.jsx';
+import SignUp from './Components/Forms/SignUp';
+import Login from './Components/Forms/Login.jsx';
+import PrivateRoute, { PrivateRoutes } from './Components/PrivateRouter/PrivateRouter.jsx';
+import ProductInfo from './Pages/ProductDetails.tsx';
+import ThemeForm from './Pages/CreateTheme.jsx';
 function App() {
   return (
     <div className='App'>

@@ -12,7 +12,7 @@ const Paginate = ({ pageCount, handlePageClick }) => {
         onPageChange={handlePageClick}
         pageRangeDisplayed={6}
         pageCount={pageCount}
-        
+
         previousLabel="Prev"
         renderOnZeroPageCount={null}
         containerClassName='pagination  justify-content-md-center justify-content-between'

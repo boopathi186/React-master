@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Button, Row, Col, Container, Card } from "react-bootstrap";
+import { Button, Row, Col, Container, Card, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import Sidebar from "../Sidebar/sidebar";
-import Header from "../Header/Header";
-import Toggle from "../Toggle/Toggle";
+import Sidebar from "../Pages/sidebar";
+
+import Toggle from "./Toggle";
 import Swal from "sweetalert2";
-import '../Css/Createstyle.css';
-import { useCreateProductMutation } from "../features/ApiSlice";
+import '../Css/CreateStyle.css';
+import { useCreateProductMutation } from "../Redux/ApiSlice";
+import Header from "../Components/Header/Header";
 
 interface Details {
     title: string;
@@ -20,7 +21,7 @@ interface Details {
 const Create: React.FC = () => {
     const navigate = useNavigate();
     const [createProduct] = useCreateProductMutation();
-    const[IsCreating,setIsCreating]=useState<boolean>(false);
+    const [IsCreating, setIsCreating] = useState<boolean>(false);
     const initialValues: Details = {
         title: "",
         price: 0,
@@ -38,7 +39,7 @@ const Create: React.FC = () => {
     const postData = (values: Details) => {
         setIsCreating(true)
         createProduct(values)
-        
+
             .then(response => {
                 console.log(response.data);
                 Swal.fire({
@@ -48,7 +49,7 @@ const Create: React.FC = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-               
+
                 navigate('/dashboard/userProfile');
             })
             .catch((error) => {
@@ -61,7 +62,7 @@ const Create: React.FC = () => {
                     icon: 'error',
                     confirmButtonText: 'OK'
                 });
-            });
+            })
     };
 
     const ret = () => {
@@ -90,7 +91,7 @@ const Create: React.FC = () => {
                 </Col>
                 <Col xl={10} lg={10} className="p-0 m-0">
                     <Row className="border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
-                        <Header />
+                       <Header/>
                     </Row>
                     <div className='d-lg-none d-block shadow'><Toggle /></div>
                     <Row className="h-75 d-flex align-items-center justify-content-center">
@@ -125,7 +126,16 @@ const Create: React.FC = () => {
                                                 ))}
                                                 <Row className="d-flex mt-4">
                                                     <Col className="text-center">
-                                                        <Button type="submit" variant="primary m-2 " disabled={IsCreating} >Create Product</Button>
+                                                        <Button type="submit" variant="primary m-2 " disabled={IsCreating} >
+                                                            {IsCreating ?
+                                                           
+                                                            ( <> 
+                                                                <Spinner as="span" animation="border" size="sm" role="status"aria-hidden="true"/> Creating...
+                                                            </>) :
+                                                             (
+                                                               "Create Product"
+                                                            )}
+                                                           </Button>
                                                         <Button type="button" variant="danger m-2" onClick={ret}>Cancel</Button>
                                                     </Col>
                                                 </Row>

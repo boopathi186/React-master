@@ -1,7 +1,7 @@
 import { Card, Col, Row } from "react-bootstrap";
-import Header from "../Header/Header";
-import Sidebar from "../Sidebar/sidebar";
-import Toggle from "../Toggle/Toggle";
+import Header from "../Components/Header/Header";
+import Sidebar from "./sidebar";
+import Toggle from "../Pages/Toggle";
 import { Link } from "react-router-dom";
 
 

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Button, Col, Row, Spinner, Table } from "react-bootstrap";
-import { useGetProductsQuery, useDeleteProductMutation } from '../features/ApiSlice';
-import Header from "../Header/Header";
-import Sidebar from "../Sidebar/sidebar";
-import Toggle from '../Toggle/Toggle';
+import { useGetProductsQuery, useDeleteProductMutation } from '../Redux/ApiSlice';
+import Header from "../Components/Header/Header";
+import Sidebar from "./sidebar";
+import Toggle from './Toggle';
 import Paginate from './Paginate';
 import Swal from 'sweetalert2';
 import moment from 'moment';
@@ -41,6 +41,7 @@ const Users = () => {
       setFilteredData(data);
     }
   }, [data, refetch]);
+
   //to delete a item
   const handledelete = (id: number) => {
     Swal.fire({
@@ -50,36 +51,34 @@ const Users = () => {
       showCancelButton: true,
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
+      
     }).then((result) => {
       if (result.isConfirmed) {
-        onDelete(id);
+        deleteProduct(id)
+        setFilteredData(filteredData.filter(product => product.id !== id));
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Deleted Successfully",
+          showConfirmButton: false,
+          timer: 1000
+        });
       }
     });
   };
   // DELETE METHOD 
-  const onDelete = async (id: number) => {
-    try {
-      await deleteProduct(id).unwrap();
-      setFilteredData(filteredData.filter(product => product.id !== id));
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Deleted Successfully",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    } catch (error) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Error deleting product",
-        showConfirmButton: false,
-        timer: 1500
-      });
-      console.log(error);
+  // const onDelete = (id) => 
+ //      deleteProduct(id);
+  //     setFilteredData(filteredData.filter(product => product.id !== id));
+  // Swal.fire({
+  //   position: "center",
+  //   icon: "success",
+  //   title: "Deleted Successfully",
+  //   showConfirmButton: false,
+  //   timer: 1000
+  // });
 
-    }
-  };
+  // };
   // SERACH AN ELEMENTS IN THE TABLE
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -197,6 +196,7 @@ const Users = () => {
                   </Button>
                 </Link>
               </Col>
+               {/* props for pagination */}
               <div className='mt-3'>
                 <Paginate pageCount={pageCount} handlePageClick={handlePageClick} />
               </div>

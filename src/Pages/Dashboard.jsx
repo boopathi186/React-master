@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import Header from "../Header/Header";
-import Sidebar from "../Sidebar/sidebar";
-import Toggle from "../Toggle/Toggle";
+import Header from "../Components/Header/Header";
+import Sidebar from "./sidebar";
+import Toggle from "../Pages/Toggle";
 import { Col, Row, Container, Card, Spinner } from 'react-bootstrap';
 import '../Css/DashboardStyle.css';
 import { useEffect, useState } from "react";

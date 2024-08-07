@@ -1,10 +1,10 @@
 import menubar from '../Assets/menubar.png';
 import hotdeck from '../Assets/Frame 629075.png';
-import Sidebar from '../Sidebar/sidebar';
+import Sidebar from './sidebar';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useState } from 'react';
-import Header from '../Header/Header';
+import Header from '../Components/Header/Header';
 const Toggle = () => {
   const [show, setShow] = useState(false);
 
