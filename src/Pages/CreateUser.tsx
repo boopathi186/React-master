@@ -8,7 +8,7 @@ import Sidebar from "../Pages/sidebar";
 import Toggle from "./Toggle";
 import Swal from "sweetalert2";
 import '../Css/CreateStyle.css';
-import { useCreateProductMutation } from "../Redux/ApiSlice";
+import { useCreateProductMutation } from "../Components/Redux/ApiSlice";
 import Header from "../Components/Header/Header";
 
 interface Details {

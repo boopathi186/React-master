@@ -6,7 +6,7 @@ import Header from "../Components/Header/Header";
 import Toggle from "../Pages/Toggle";
 import Swal from "sweetalert2";
 import { getproducts } from "../Pages/ApiCall";
-import { useUpdateProductMutation } from "../Redux/ApiSlice";
+import { useUpdateProductMutation } from "../Components/Redux/ApiSlice";
 
 const Update = () => {
     const { id } = useParams();

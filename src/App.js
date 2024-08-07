@@ -10,7 +10,7 @@ import Create from './Pages/CreateUser.tsx';
 import Update from './Pages/Update.jsx';
 import SignUp from './Components/Forms/SignUp';
 import Login from './Components/Forms/Login.jsx';
-import PrivateRoute, { PrivateRoutes } from './Components/PrivateRouter/PrivateRouter.jsx';
+import PrivateRoute, { PrivateRoutes } from './Pages/PrivateRouter.jsx';
 import ProductInfo from './Pages/ProductDetails.tsx';
 import ThemeForm from './Pages/CreateTheme.jsx';
 function App() {
