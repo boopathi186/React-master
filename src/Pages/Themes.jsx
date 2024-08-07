@@ -2,8 +2,6 @@ import { Card, Col, Row } from "react-bootstrap";
 import Header from "../Components/Header/Header";
 import Sidebar from "./sidebar";
 import Toggle from "../Pages/Toggle";
-import { Link } from "react-router-dom";
-
 
 const Theme = () => {
     return (
@@ -19,16 +17,14 @@ const Theme = () => {
                     <div className=' col-12 d-lg-none d-block shadow'><Toggle /></div>
                     <div className="row m-0 p-0 mt-4">
                         <Row className=" row-cols-1  row-cols-md-2 row-cols-xl-4 g-4 mt-3  m-0">
-
                             <Col>
-                                <Link className=' text-decoration-none text-white fw-bold' to='/theme/create_theme'>
                                     <Card className="theme h-100 shadow-sm rounded text-center border-0">
                                         <Card.Body className="bg-light bg-opacity-75 p-0 m-0 text-dark fw-bold  ">
                                             <Row className="d-flex align-items-center h-100 justify-content-center text-danger fs-4 rounded-3 bg-white shadow-sm">
                                                 Create Themes +
                                             </Row>
                                         </Card.Body>
-                                    </Card></Link>
+                                    </Card>
                             </Col>
                         </Row>
                     </div>

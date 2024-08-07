@@ -8,7 +8,7 @@ import Sidebar from "../Pages/sidebar";
 import Toggle from "./Toggle";
 import Swal from "sweetalert2";
 import '../Css/CreateStyle.css';
-import { useCreateProductMutation } from "../Components/Redux/ApiSlice";
+import { useCreateProductMutation } from "../Redux/ApiSlice";
 import Header from "../Components/Header/Header";
 
 interface Details {
@@ -64,7 +64,7 @@ const Create: React.FC = () => {
                 });
             })
     };
-
+    // cancel Button
     const ret = () => {
         navigate('/dashboard/userProfile');
         Swal.fire({
@@ -91,7 +91,7 @@ const Create: React.FC = () => {
                 </Col>
                 <Col xl={10} lg={10} className="p-0 m-0">
                     <Row className="border-bottom border-secondary border-opacity-25 text-end p-0 m-0 d-lg-block d-none">
-                       <Header/>
+                        <Header />
                     </Row>
                     <div className='d-lg-none d-block shadow'><Toggle /></div>
                     <Row className="h-75 d-flex align-items-center justify-content-center">
@@ -125,17 +125,19 @@ const Create: React.FC = () => {
                                                     </Row>
                                                 ))}
                                                 <Row className="d-flex mt-4">
-                                                    <Col className="text-center">
-                                                        <Button type="submit" variant="primary m-2 " disabled={IsCreating} >
+                                                    <Col className="text-center"> 
+                                                    
+                                                           {/* to loading inside the button */}
+                                                        <Button type="submit" variant="primary m-2 " disabled={IsCreating} >     
                                                             {IsCreating ?
-                                                           
-                                                            ( <> 
-                                                                <Spinner as="span" animation="border" size="sm" role="status"aria-hidden="true"/> Creating...
-                                                            </>) :
-                                                             (
-                                                               "Create Product"
-                                                            )}
-                                                           </Button>
+
+                                                                (<>
+                                                                    <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> Creating...
+                                                                </>) :
+                                                                (
+                                                                    "Create Product"
+                                                                )}
+                                                        </Button>
                                                         <Button type="button" variant="danger m-2" onClick={ret}>Cancel</Button>
                                                     </Col>
                                                 </Row>

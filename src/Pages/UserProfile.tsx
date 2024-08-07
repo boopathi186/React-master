@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Button, Col, Row, Spinner, Table } from "react-bootstrap";
-import { useGetProductsQuery, useDeleteProductMutation } from '../Components/Redux/ApiSlice';
+import { useGetProductsQuery, useDeleteProductMutation } from '../Redux/ApiSlice';
 import Header from "../Components/Header/Header";
 import Sidebar from "./sidebar";
 import Toggle from './Toggle';

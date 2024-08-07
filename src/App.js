@@ -10,9 +10,8 @@ import Create from './Pages/CreateUser.tsx';
 import Update from './Pages/Update.jsx';
 import SignUp from './Components/Forms/SignUp';
 import Login from './Components/Forms/Login.jsx';
-import PrivateRoute, { PrivateRoutes } from './Pages/PrivateRouter.jsx';
+import PrivateRoute, { PrivateRoutes } from './Components/PrivateRouter/PrivateRouter.jsx';
 import ProductInfo from './Pages/ProductDetails.tsx';
-import ThemeForm from './Pages/CreateTheme.jsx';
 function App() {
   return (
     <div className='App'>
@@ -30,7 +29,6 @@ function App() {
             <Route path='/dashboard/userProfile' element={<UserProfile />} />
             <Route path='/dashboard/themes' element={<Theme />}></Route>
             <Route path='/theme' element={<Theme />} />
-            <Route path='/theme/create_theme' element={<ThemeForm/>}/>
             <Route path='/myprofile' element={<MyProfile />} />
             <Route path='/userProfile/:userId' element={<ProductInfo />} />
             <Route path='/userprofile/create' element={<Create />} />

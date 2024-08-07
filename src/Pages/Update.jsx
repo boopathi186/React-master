@@ -5,8 +5,8 @@ import Sidebar from "../Pages/sidebar";
 import Header from "../Components/Header/Header";
 import Toggle from "../Pages/Toggle";
 import Swal from "sweetalert2";
-import { getproducts } from "../Redux/ApiCall";
-import { useUpdateProductMutation } from "../Components/Redux/ApiSlice";
+import { getproducts } from "../Components/PrivateRouter/ApiCall";
+import { useUpdateProductMutation } from "../Redux/ApiSlice";
 
 const Update = () => {
     const { id } = useParams();
