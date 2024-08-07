@@ -135,7 +135,7 @@ const Create: React.FC = () => {
                                                                     <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> Creating...
                                                                 </>) :
                                                                 (
-                                                                    "Create Product"
+                                                                    "Create"
                                                                 )}
                                                         </Button>
                                                         <Button type="button" variant="danger m-2" onClick={ret}>Cancel</Button>

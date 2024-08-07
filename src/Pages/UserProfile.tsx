@@ -97,6 +97,8 @@ const Users = () => {
   const handlePageClick = (event: { selectedPage: number; selected: number }) => {
     const selectedPage = event.selected;
     setCurrentPage(selectedPage);
+    console.log(event);
+    
   };
   return (
     <div>
