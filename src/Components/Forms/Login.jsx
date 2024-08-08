@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import hotdeck from '../../Assets/Frame 629075.png';
+import hotdeck from '../../assets/Frame 629075.png';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import deck from '../../Assets/Frame 365.png';
+import deck from '../../assets/Frame 365.png';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import axios from 'axios';
 import Swal from 'sweetalert2';

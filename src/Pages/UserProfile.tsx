@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Button, Col, Row, Spinner, Table } from "react-bootstrap";
-import { useGetProductsQuery, useDeleteProductMutation } from '../Redux/ApiSlice';
-import Header from "../Components/Header/Header";
+import { useGetProductsQuery, useDeleteProductMutation } from '../redux/ApiSlice';
+import Header from "../components/header/Header";
 import Sidebar from "./sidebar";
 import Toggle from './Toggle';
 import Paginate from './Paginate';
 import Swal from 'sweetalert2';
 import moment from 'moment';
-import '../Css/UsersStyle.css';
+import '../css/UsersStyle.css';
 import React from 'react';
 
 type Tables = {

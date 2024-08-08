@@ -1,17 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Theme from './Pages/Themes';
+import Theme from './pages/Themes';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Dashboard from './Pages/Dashboard';
-import MyProfile from './Pages/MyProfile.jsx';
-import NotFound from './Pages/NotFound';
-import UserProfile from './Pages/UserProfile.tsx';
-import Create from './Pages/CreateUser.tsx';
-import Update from './Pages/Update.jsx';
-import SignUp from './Components/Forms/SignUp';
-import Login from './Components/Forms/Login.jsx';
-import PrivateRoute, { PrivateRoutes } from './Components/PrivateRouter/PrivateRouter.jsx';
-import ProductInfo from './Pages/ProductDetails.tsx';
+import Dashboard from './pages/Dashboard';
+import MyProfile from './pages/MyProfile.jsx';
+import NotFound from './pages/NotFound';
+import UserProfile from './pages/UserProfile.tsx';
+import Create from './pages/CreateUser.tsx';
+import Update from './pages/Update.jsx';
+import SignUp from './components/forms/SignUp';
+import Login from './components/forms/Login.jsx';
+import PrivateRoute, { PrivateRoutes } from './components/private-Router/PrivateRouter.jsx';
+import ProductInfo from './pages/ProductDetails.tsx';
 function App() {
   return (
     <div className='App'>

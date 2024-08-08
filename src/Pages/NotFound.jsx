@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from "../Components/Header/Header";
-import Sidebar from "../Pages/sidebar";
-import Toggle from "../Pages/Toggle";
+import Header from "../components/header/Header";
+import Sidebar from "../pages/sidebar";
+import Toggle from "../pages/Toggle";
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 

@@ -3,13 +3,13 @@ import { Button, Row, Col, Container, Card, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import Sidebar from "../Pages/sidebar";
+import Sidebar from "../pages/sidebar";
 
 import Toggle from "./Toggle";
 import Swal from "sweetalert2";
-import '../Css/CreateStyle.css';
-import { useCreateProductMutation } from "../Redux/ApiSlice";
-import Header from "../Components/Header/Header";
+import '../css/CreateStyle.css';
+import { useCreateProductMutation } from "../redux/ApiSlice";
+import Header from "../components/header/Header";
 
 interface Details {
     title: string;

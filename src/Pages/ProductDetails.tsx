@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Row, Spinner } from "react-bootstrap";
 import axios from "axios";
-import Header from "../Components/Header/Header";
+import Header from "../components/header/Header";
 import Toggle from "./Toggle";
-import '../Css/ProductInfo.css';
+import '../css/ProductInfo.css';
 import Sidebar from "./sidebar";
 
 type Product = {

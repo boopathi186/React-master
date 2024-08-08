@@ -1,6 +1,6 @@
 import React from 'react';
-import '../Css/Sidebar.css';
-import hotdeck from '../Assets/Frame 629075.png';
+import '../css/Sidebar.css';
+import hotdeck from '../assets/Frame 629075.png';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Link } from 'react-router-dom';
 

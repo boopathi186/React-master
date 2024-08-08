@@ -1,7 +1,7 @@
 import { Card, Col, Row } from "react-bootstrap";
-import Header from "../Components/Header/Header";
+import Header from "../components/header/Header";
 import Sidebar from "./sidebar";
-import Toggle from "../Pages/Toggle";
+import Toggle from "../pages/Toggle";
 
 const Theme = () => {
     return (

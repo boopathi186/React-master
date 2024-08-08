@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import Header from "../Components/Header/Header";
+import Header from "../components/header/Header";
 import Sidebar from "./sidebar";
-import Toggle from "../Pages/Toggle";
+import Toggle from "../pages/Toggle";
 import { Col, Row, Container, Card, Spinner } from 'react-bootstrap';
-import '../Css/DashboardStyle.css';
+import '../css/DashboardStyle.css';
 import { useEffect, useState } from "react";
 
 

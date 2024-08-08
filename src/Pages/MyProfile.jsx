@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Profile from '../Assets/profilepic.png';
-import Exit from '../Components/Buttons/CancelButton.tsx';
-import EditButton from '../Components/Buttons/EditButton.jsx';
-import Save from '../Components/Buttons/SaveButton.tsx';
-import '../Css/Contentstyle.css';
-import Header from '../Components/Header/Header.jsx';
+import Profile from '../assets/profilepic.png';
+import Exit from '../components/buttons/CancelButton.tsx';
+import EditButton from '../components/buttons/EditButton.jsx';
+import Save from '../components/buttons/SaveButton.tsx';
+import '../css/Contentstyle.css';
+import Header from '../components/header/Header.jsx';
 import Sidebar from './sidebar.jsx';
 import Toggle from './Toggle.jsx';
 import { Row, Col, Form } from 'react-bootstrap';

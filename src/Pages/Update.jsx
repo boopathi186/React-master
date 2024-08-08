@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Row, Container, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import Sidebar from "../Pages/sidebar";
-import Header from "../Components/Header/Header";
-import Toggle from "../Pages/Toggle";
+import Sidebar from "../pages/sidebar";
+import Header from "../components/header/Header";
+import Toggle from "../pages/Toggle";
 import Swal from "sweetalert2";
-import { getproducts } from "../Components/PrivateRouter/ApiCall";
-import { useUpdateProductMutation } from "../Redux/ApiSlice";
+import { getproducts } from "../components/private-Router/ApiCall";
+import { useUpdateProductMutation } from "../redux/ApiSlice";
 
 const Update = () => {
     const { id } = useParams();

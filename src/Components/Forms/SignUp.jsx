@@ -2,11 +2,11 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import '../../Css/LoginStyle.css';
+import '../../css/LoginStyle.css';
 import { Col, Row } from 'react-bootstrap';
-import deck from '../../Assets/Frame 365.png';
-import hotdeck from '../../Assets/Frame 629075.png';
-import '../../Css/SignUpStyle.css';
+import deck from '../../assets/Frame 365.png';
+import hotdeck from '../../assets/Frame 629075.png';
+import '../../css/SignUpStyle.css';
 const SignUp = () => {
     const validationSchema = Yup.object().shape({
         username: Yup.string()
