@@ -12,10 +12,12 @@ import SignUp from './components/forms/SignUp';
 import Login from './components/forms/Login.jsx';
 import PrivateRoute, { PrivateRoutes } from './components/private-Router/PrivateRouter.jsx';
 import ProductInfo from './pages/ProductDetails.tsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <div className='App'>
-
+ 
       <Router>
         <Routes>
           <>

@@ -39,9 +39,10 @@ const Users = () => {
     refetch()
     if (data) {
       setFilteredData(data);
+      console.log(data)
     }
   }, [data, refetch]);
-
+ 
   //to delete a item
   const handledelete = (id: number) => {
     Swal.fire({
