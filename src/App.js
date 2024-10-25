@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/MyProfile.jsx';
 import NotFound from './pages/NotFound';
-import UserProfile from './pages/UserProfile.tsx';
 import Create from './pages/CreateUser.tsx';
 import Update from './pages/Update.jsx';
 import SignUp from './components/forms/SignUp';
@@ -28,7 +27,7 @@ function App() {
           </>
           <Route element={<PrivateRoute />}>
             <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/dashboard/userProfile' element={<UserProfile />} />
+            {/* <Route path='/dashboard/userProfile' element={<UserProfile />} /> */}
             <Route path='/dashboard/themes' element={<Theme />}></Route>
             <Route path='/theme' element={<Theme />} />
             <Route path='/myprofile' element={<MyProfile />} />

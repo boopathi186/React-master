@@ -5,7 +5,7 @@ import { useGetProductsQuery, useDeleteProductMutation } from '../redux/ApiSlice
 import Header from "../components/header/Header";
 import Sidebar from "./sidebar";
 import Toggle from './Toggle';
-import Paginate from './Paginate';
+import Paginate from '../pages/Paginate';
 import Swal from 'sweetalert2';
 import moment from 'moment';
 import '../css/UsersStyle.css';

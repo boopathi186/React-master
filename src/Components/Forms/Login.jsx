@@ -25,12 +25,11 @@ const Login = () => {
 
     const handleSubmit = async (values) => {
         try {
-            const response = await axios.post('https://api.escuelajs.co/api/v1/auth/login', {
-                email: values.email,
-                password: values.password,
-            });
+            
+            const response = await axios.post('http://localhost:8080/login',values);
             if (response.data.access_token) {
                 sessionStorage.setItem('token', response.data.access_token);
+                console.log(response.data.access_token)
                 navigate('/dashboard');
                 setTimeout (() =>
                 {  Swal.fire({
